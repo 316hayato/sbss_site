@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SssSite</title>
+    <title>SBSSサイト</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +10,57 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="/"><span>LOGO</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <div class="btn-wrapper">
+                <% if customer_signed_in? %>
+              <!--顧客ログイン済みの場合-->
+                <%= link_to "マイページ",customers_my_page_path(current_customer), class:"btn btn-outline-secondary mx-2" %>
+                <%= link_to "サービス一覧",services_path, class:"btn btn-outline-secondary mx-2" %>
+                <%= link_to "お問い合わせはこちら",new_question_path, class:"btn btn-outline-secondary mx-2" %>
+                <%= link_to "ログアウト",destroy_customer_session_path, class:"btn btn-outline-danger mx-2", method: :delete %>
+              <% elsif admin_signed_in? %>
+              <!--管理者ログイン済みの場合-->
+                <%= link_to "サービス一覧",admin_services_path, class:"btn btn-outline-secondary mx-2" %>
+                <%= link_to "会員一覧",admin_customers_path, class:"btn btn-outline-secondary mx-2" %>
+                <%= link_to "依頼履歴一覧",admin_root_path, class:"btn btn-outline-secondary mx-2" %>
+                <%= link_to "お問い合わせ一覧",admin_questions_path, class:"btn btn-outline-secondary mx-2" %>
+                <%= link_to "ログアウト",destroy_admin_session_path, class:"btn btn-outline-danger mx-2", method: :delete %>
+              <% else %>
+                <!--ログインしていない場合-->
+                <%= link_to "About",about_path, class:"btn btn-outline-secondary mx-2" %>
+                <%= link_to "サービス一覧",services_path, class:"btn btn-outline-secondary mx-2" %>
+                <%= link_to "新規登録",new_customer_registration_path, class:"btn btn-outline-primary mx-2" %>
+                <%= link_to "ログイン",new_customer_session_path, class:"btn btn-outline-success mx-2" %>
+              <% end %>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto">
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% end %>
     <%= yield %>
+    </main>
+    <footer class="bg-dark text-white pt-2 pb-5">
+      <div class="containar mt-4">
+        <div class="row">
+          <div class="mx-auto">
+            <p>made in japan</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

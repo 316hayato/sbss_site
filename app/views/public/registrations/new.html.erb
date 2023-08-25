@@ -1,0 +1,114 @@
+<%= render "public/shared/error_messages", resource: resource %>
+  <div class="container">
+    <div class="card-container">
+      <div class="card-body">
+        <h3 class="card-title mb-4 mt-1">新規会員登録</h3>
+        <%= form_with model: @customer, url: customer_registration_path do |f| %>
+        <table>
+          <tbody>
+            <tr>
+              <th>名前</th>
+              <th>
+              <%= f.label :last_name, "(姓)" %>
+              </th>
+              <th>
+              <%= f.text_field :last_name %>
+              </th>
+              <th>
+              <%= f.label :first_name, "(名)" %>
+              </th>
+              <th>
+              <%= f.text_field :first_name %>
+              </th>
+            </tr>
+            <tr>
+              <th>フリガナ</th>
+              <th>
+              <%= f.label :last_name_kana, "(セイ)" %>
+              </th>
+              <th>
+              <%= f.text_field :last_name_kana %>
+              </th>
+              <th>
+              <%= f.label :first_name_kana, "(メイ)" %>
+              </th>
+              <th>
+              <%= f.text_field :first_name_kana %>
+              </th>
+            </tr>
+            <tr>
+              <th>
+              <%= f.label :email, "メールアドレス" %>
+              </th>
+              <th></th>
+              <th>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              </th>
+            </tr>
+
+            <tr>
+              <th>
+              <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+              </th>
+              <th></th>
+              <th>
+              <%= f.text_field :postal_code %>
+              </th>
+            </tr>
+
+            <tr>
+              <th>
+              <%= f.label :address, "住所" %>
+              </th>
+              <th></th>
+              <th colspan="3">
+              <%= f.text_field :address, size: "50" %>
+              </th>
+            </tr>
+
+            <tr>
+              <th>
+              <%= f.label :telephone_number, "電話番号(ハイフンなし)" %>
+              </th>
+              <th></th>
+              <th>
+              <%= f.text_field :telephone_number %>
+              </th>
+            </tr>
+            <tr>
+              <th>
+              <%= f.label :password, "パスワード" %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> 文字以上)</em>
+              <% end %>
+              </th>
+              <th></th>
+              <th>
+              <%= f.password_field :password, autocomplete: "new-password" %>
+              </th>
+            </tr>
+            <tr>
+              <th>
+              <%= f.label :password_confirmation, "パスワード(確認用)" %>
+              </th>
+              <th></th>
+              <th>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+              </th>
+            </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>
+              <div class="btn-wrapper col-10 mx-auto">
+                <%= f.submit "新規登録", class: "btn btn-success btn-block" %>
+              </div>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+        <% end %>
+      <%= render "public/shared/links" %>
+      </div>
+    </div>
+  </div>

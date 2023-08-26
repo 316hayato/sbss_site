@@ -1,2 +1,49 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class="container">
+  <div class="px-5">
+    <h2 class="m-3">マイページ</h2>
+    <div class="row">
+      <h3 class="font-weight-bold">登録情報</h3>
+      <p><%= link_to "編集する",customers_my_page_edit_path, class:"btn btn-sm btn-success ml-3" %></p>
+    </div>
+    <div class="row">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>氏名</th>
+            <th><%= @customer.last_name %>　<%= @customer.first_name %></th>
+          </tr>
+          <tr>
+            <th>カナ</th>
+            <th><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></th>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <th><%= @customer.postal_code %></th>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <th><%= @customer.address %></th>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <th><%= @customer.telephone_number %></th>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <th><%= @customer.email %></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <table>
+        <tbody>
+          <tr>
+            <th><h3 class="font-weight-bold">申し込み履歴</h3></th>
+            <th><%= link_to "一覧を見る",requests_path, class:"btn btn-sm btn-primary ml-3" %></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

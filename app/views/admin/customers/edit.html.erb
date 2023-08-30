@@ -1,2 +1,58 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container p-4">
+  <h3 class="font-weight-bold my-3 ml-5"><%= "#{@customer.last_name}#{@customer.first_name}" %>さんの会員情報編集</h3>
+  <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
+  <div class="row">
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <th>会員ID</th>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <th><label for="inputName">氏名</label></th>
+          <th>
+            <%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"姓" %>
+            <%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"名" %>
+          </th>
+        </tr>
+        <tr>
+          <th><label for="inputNameKana">フリガナ</label></th>
+          <th>
+            <%= f.text_field :last_name_kana, autofocus: true, id:"inputNameKana", placeholder:"セイ" %>
+            <%= f.text_field :first_name_kana, autofocus: true, id:"inputNameKana", placeholder:"メイ" %>
+          </th>
+        </tr>
+        <tr>
+          <th><label for="inputPostalCode">郵便番号</label></th>
+          <th colspan="2"><%= f.text_field :postal_code, autofocus: true, id:"PostalCode", placeholder:"0000000" %></th>
+        </tr>
+        <tr>
+          <th><label for="inputAddress">住所</label></th>
+          <th colspan="2"><%= f.text_field :address, autofocus: true, id:"inputAddress", placeholder:"〇〇県〇〇市", size: 60 %></th>
+        </tr>
+        <tr>
+          <th><label for="inputTelephoneNumber">電話番号</label></th>
+          <th colspan="2"><%= f.text_field :telephone_number, autofocus: true, id:"inputTelephoneNumber", placeholder:"00000000000" %></th>
+        </tr>
+        <tr>
+          <th><label for="inputEmail">メールアドレス</label></th>
+          <th colspan="2"><%= f.text_field :email, autofocus: true, id:"inputEmail", placeholder:"sample@example.com", size: 40 %></th>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <th colspan="2">
+            <%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効" %>
+            <%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会" %>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row m-auto">
+    <div class="col-2"></div>
+    <div class="col">
+      <%= f.submit "変更を保存", class:"btn btn-success" %>
+    </div>
+  </div>
+  <% end %>
+</div>

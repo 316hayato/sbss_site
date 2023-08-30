@@ -1,2 +1,38 @@
-<h1>Admin::Services#show</h1>
-<p>Find me in app/views/admin/services/show.html.erb</p>
+<div class="container p-4">
+  <h3 class="font-weight-bold ml-5">サービス詳細</h3>
+  <div class="row m-3">
+    <div class="col ml-auto">
+      <%= image_tag @service.get_image(300,300) %>
+    </div>
+    <div class="col mr-auto">
+      <div class="row">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th style="width: 25%"></th>
+              <td style="width: 75%"></td>
+            </tr>
+            <tr>
+              <th>商品名</th>
+              <td><%= @service.service_name %></td>
+            </tr>
+            <tr>
+              <th>商品説明</th>
+              <td><%= @service.service_introduction %></td>
+            </tr>
+            <tr>
+              <th>税込価格</br>(税抜価格)</th>
+              <td>
+                <%= number_with_delimiter(@service.with_tax_price.floor, delimiter: ',') %>
+                (<%= number_with_delimiter(@service.price, delimiter: ',') %>) 円
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= link_to "編集する",edit_admin_service_path, class:"btn btn-success m-3 py-2 px-4" %>
+  </div>
+</div>

@@ -5,6 +5,9 @@ class CreateRequests < ActiveRecord::Migration[6.1]
       t.integer :pay_method,      null: false, default: 0
       t.integer :postage,         null: false
       t.integer :pay_money,       null: false
+      t.string  :postal_code,     null: false
+      t.string  :address,         null: false
+      t.string  :address_name,    null: false
       t.integer :requests_status, null: false, default: 0
       t.timestamps
     end

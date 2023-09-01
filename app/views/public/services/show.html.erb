@@ -1,2 +1,33 @@
-<h1>Public::Services#show</h1>
-<p>Find me in app/views/public/services/show.html.erb</p>
+<div class="container">
+  <div class="row p-5">
+    <div class="col-3"></div>
+    <div class="col-4">
+      <%= image_tag @service.get_image(300,200) %>
+    </div>
+    <div class="col-5 p-2">
+      <div class="row">
+        <h4 class="font-weight-bold"><%= @service.service_name %></h4>
+      </div>
+      <div class="row">
+        <p class="font-weight-normal"><%= @service.service_introduction %></p>
+      </div>
+      <div class="row">
+        <p class="font-weight-bold">¥ <%= number_with_delimiter(@service.with_tax_price.floor, delimiter: ',') %>(税込)</p>
+      </div>
+      <!--ログインしている場合-->
+      <% if current_customer %>
+        <%= form_with model: @request_list, url: request_lists_path, method: :post do |f| %>
+        <div class="row">
+          <div class="col-3">
+            <%= f.hidden_field :service_id, :value => @service.id %>
+          </div>
+          <div class="col-6">
+            <%= f.submit '依頼リストに入れる', class:"btn btn-success" %>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+      <!---->
+    </div>
+  </div>
+</div>

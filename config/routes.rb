@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get 'homes/about' => 'homes#about', as: 'about'
     resources :services,only: [:index, :show]
+    resources :request_lists, only: [:index, :create, :destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
     get 'customers/my_page' => 'customers#show'
     get 'customers/my_page/edit' => 'customers#edit'
     patch 'customers/my_page' => 'customers#update'

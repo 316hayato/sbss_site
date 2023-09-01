@@ -1,2 +1,20 @@
-<h1>Public::Services#index</h1>
-<p>Find me in app/views/public/services/index.html.erb</p>
+<div class="container">
+  <div class="row p-5">
+    <div class="col-2">
+    </div>
+    <div class="col-10">
+      <h2 class="font-weight-bold">サービス一覧(全<%= @services.count %>件)</h2>
+      <div class="row d-flex justify-content-center">
+        <% @services.each do |service| %>
+          <div class="item-box m-1">
+            <%=link_to service_path(service.id) do %>
+            <%= image_tag service.image, size: "180x125" %>
+            <% end %>
+            <p><%= link_to service.service_name, service_path(service.id) %></p>
+            <p>¥ <%= number_with_delimiter(service.price, delimiter: ',') %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

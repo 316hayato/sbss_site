@@ -1,8 +1,9 @@
 class Service < ApplicationRecord
   has_one_attached :image
-  has_many :service_details, dependent: :destroy
+  has_many :request_lists, dependent: :destroy
+  has_many :request_details, dependent: :destroy
 
-
+  validates :image, presence: true
   validates :service_name, presence: true
   validates :service_introduction, presence: true
   validates :price, presence: true

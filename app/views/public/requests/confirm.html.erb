@@ -1,21 +1,21 @@
 <div class="container p-3">
-  <h3 class="ml-4">注文情報確認</h3>
+  <h3 class="ml-4">依頼情報確認</h3>
   <div class="row p-1">
     <div class="col-8">
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th class="font-weight-bold h5">商品名</th>
+            <th class="font-weight-bold h5">サービス名</th>
             <th class="font-weight-bold h5">単価(税込)</th>
             <th class="font-weight-bold h5">小計</th>
           </tr>
         </thead>
         <tbody>
-          <% @cart_items.each do |cart_item| %>
+          <% @request_lists.each do |request_list| %>
           <tr>
-            <th><%= cart_item.item.name %></th>
-            <td><%= number_with_delimiter(cart_item.item.with_tax_price, delimiter: ',') %></td>
-            <td><%= number_with_delimiter(cart_item.subtotal, delimiter: ',') %></td>
+            <th><%= request_list.service.service_name %></th>
+            <td><%= number_with_delimiter(request_list.service.with_tax_price, delimiter: ',') %></td>
+            <td><%= number_with_delimiter(request_list.subtotal, delimiter: ',') %></td>
           </tr>
           <% end %>
         </tbody>
@@ -42,22 +42,21 @@
   </div>
   <div class="row p-2">
     <div class="col-2 font-weight-bold text-right">支払方法</div>
-    <div class="col-10 text-left"><%= @order.pay_method_i18n %></div>
+    <div class="col-10 text-left"><%= @request.pay_method_i18n %></div>
   </div>
   <div class="row p-2">
     <div class="col-2 font-weight-bold text-right">お届け先</div>
-    <div class="col-10 text-left"><%= @order.address_display %></div>
+    <div class="col-10 text-left"><%= @request.address_display %></div>
   </div>
   <div class="text-center p-5">
-    <%= form_with model: @order, url: orders_path, method: :post do |f| %>
-      <%= f.hidden_field :postal_code, :value => @order.postal_code %>
-      <%= f.hidden_field :postal_code, :value => @order.postal_code %>
-      <%= f.hidden_field :address, :value => @order.address %>
-      <%= f.hidden_field :address_name, :value => @order.address_name %>
-      <%= f.hidden_field :pay_method, :value => @order.pay_method %>
+    <%= form_with model: @request, url: requests_path, method: :post do |f| %>
+      <%= f.hidden_field :pay_method, :value => @request.pay_method %>
       <%= f.hidden_field :postage, :value => @postage.to_i %>
       <%= f.hidden_field :pay_money, :value => @pay_money.to_i %>
-      <%= f.submit '注文を確定する', class:"btn btn-success" %>
+      <%= f.hidden_field :postal_code, :value => @request.postal_code %>
+      <%= f.hidden_field :address, :value => @request.address %>
+      <%= f.hidden_field :address_name, :value => @request.address_name %>
+      <%= f.submit '依頼を確定する', class:"btn btn-success" %>
     <% end %>
   </div>
 </div>

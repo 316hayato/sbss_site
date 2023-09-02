@@ -1,2 +1,77 @@
-<h1>Admin::Requests#show</h1>
-<p>Find me in app/views/admin/requests/show.html.erb</p>
+<div class="container p-4">
+  <h3 class="font-weight-bold my-3 ml-5">依頼履歴詳細</h3>
+  <div class="row m-auto p-auto">
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <th>依頼者</th>
+          <th><%= link_to @request.address_name, admin_customer_path(@request.customer_id) %></th>
+        </tr>
+        <tr>
+          <th>注文日</th>
+          <th><%= @request.created_at.strftime('%Y/%m/%d') %></th>
+        </tr>
+        <tr>
+          <th>配送先</th>
+          <th><%= @request.address_display %></th>
+        </tr>
+        <tr>
+          <th>支払方法</th>
+          <th><%= @request.pay_method_i18n %></th>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row m-auto p-auto">
+    <div class="col-6 m-auto p-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>サービス名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @request_details.each do |request_detail| %>
+          <tr>
+            <td><%= request_detail.service.service_name %></td>
+            <td><%= number_with_delimiter(request_detail.service.with_tax_price, delimiter: ',') %></td>
+            <td><%= request_detail.amount %></td>
+            <td><%= number_with_delimiter(request_detail.subtotal, delimiter: ',') %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-3 m-auto p-auto"></div>
+    <div class="col-3 m-auto p-auto">
+      <div class="row text-bottom">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th>商品合計</th>
+              <td><%= number_with_delimiter(@request.total, delimiter: ',') %>円</td>
+            </tr>
+            <tr>
+              <th>送料</th>
+              <td><%= @request.postage %>円</td>
+            </tr>
+            <tr>
+              <th>請求金額合計</th>
+              <th><%= number_with_delimiter(@request.pay_money, delimiter: ',') %>円</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div>
+    <%= link_to "依頼履歴一覧へ戻る",admin_root_path, class:"btn btn-outline-secondary mx-2" %>
+    </div>
+</div>

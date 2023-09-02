@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="ml-4">注文履歴一覧</h3>
+  <h3 class="ml-4">申し込み履歴一覧</h3>
   <div class="row m-2">
     <table class="table table-bordered">
       <thead>
@@ -12,17 +12,17 @@
         </tr>
       </thead>
       <tbody>
-        <% @orders.each do |order| %>
+        <% @requests.each do |request| %>
         <tr>
-          <td><%= order.created_at.strftime('%y/%m/%d') %></td>
-          <td>〒<%= order.postal_code %><br>
-              <%= order.address %><br>
-              <%= order.address_name %></th>
-          <td><% order.order_details.each do |order_detail| %>
-                <%= order_detail.item.name %><br>
+          <td><%= request.created_at.strftime('%y/%m/%d') %></td>
+          <td>〒<%= request.postal_code %><br>
+              <%= request.address %><br>
+              <%= request.address_name %></th>
+          <td><% request.request_details.each do |request_detail| %>
+                <%= request_detail.service.service_name %><br>
               <% end %></td>
-          <td><%= number_with_delimiter(order.pay_money, delimiter: ',') %>円</td>
-          <td><%= link_to "表示する", order_path(order.id), class:"btn btn-primary" %></td>
+          <td><%= number_with_delimiter(request.pay_money, delimiter: ',') %>円</td>
+          <td><%= link_to "表示する", request_path(request.id), class:"btn btn-primary" %></td>
         </tr>
         <% end %>
       </tbody>

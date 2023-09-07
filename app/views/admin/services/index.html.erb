@@ -11,9 +11,10 @@
     <table class="table">
       <thead>
         <tr>
-          <th>商品ID</th>
-          <th>商品名</th>
+          <th>サービスID</th>
+          <th>サービス名</th>
           <th>税抜価格</th>
+          <th>ステータス</th>
         </tr>
       </thead>
       <tbody>
@@ -22,6 +23,13 @@
           <td><%= service.id %></td>
           <td><%= link_to service.service_name, admin_service_path(service.id) %></td>
           <td><%= number_with_delimiter(service.price, delimiter: ',') %></td>
+          <td>
+            <% if service.is_active %>
+              <p class="text-secondary font-weight-bold">利用可能</p>
+            <% else %>
+              <p class="text-success font-weight-bold">利用停止</p>
+            <% end %>
+          </td>
         </tr>
         <% end %>
       </tbody>

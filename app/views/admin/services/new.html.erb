@@ -5,15 +5,15 @@
     <table>
       <tbody>
         <tr>
-          <td>商品画像</td>
+          <td>画像</td>
           <td><%= f.file_field :image, accept: "image/*" %></td>
         </tr>
         <tr>
-          <td>商品名</td>
+          <td>サービス名</td>
           <td><%= f.text_field :service_name, placeholder:"サービス名", size: 35 %></td>
         </tr>
         <tr>
-          <td>商品説明</td>
+          <td>サービス説明</td>
           <td><%= f.text_area :service_introduction, placeholder:"ここに説明文を記述します", size: "38x5" %></td>
         </tr>
         <tr>

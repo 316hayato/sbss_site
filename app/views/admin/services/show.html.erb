@@ -13,18 +13,28 @@
               <td style="width: 75%"></td>
             </tr>
             <tr>
-              <th>商品名</th>
+              <th>サービス名</th>
               <td><%= @service.service_name %></td>
             </tr>
             <tr>
-              <th>商品説明</th>
+              <th>サービス説明</th>
               <td><%= @service.service_introduction %></td>
             </tr>
             <tr>
-              <th>税込価格</br>(税抜価格)</th>
+              <th>提供価格(税抜)</th>
               <td>
                 <%= number_with_delimiter(@service.with_tax_price.floor, delimiter: ',') %>
                 (<%= number_with_delimiter(@service.price, delimiter: ',') %>) 円
+              </td>
+            </tr>
+            <tr>
+              <th>提供ステータス</th>
+              <td>
+                <% if @service.is_active %>
+                  <p class="text-secondary font-weight-bold">利用可能</p>
+                <% else %>
+                  <p class="text-success font-weight-bold">利用停止</p>
+                <% end %>
               </td>
             </tr>
           </tbody>

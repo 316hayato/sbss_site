@@ -6,21 +6,28 @@
       <table>
         <tbody>
           <tr>
-            <th>商品画像</th>
+            <th>画像</th>
             <td><%= f.file_field :image, accept: "image/*"  %></td>
           </tr>
           <tr>
-            <th>商品名</th>
+            <th>サービス名</th>
             <td><%= f.text_field :service_name, size: 35 %></td>
           </tr>
           <tr>
-            <th>商品説明</th>
+            <th>サービス説明</th>
             <td><%= f.text_area :service_introduction, size: "38x5" %></td>
             </tr>
           <tr>
             <th>税抜価格</th>
             <td><%= f.text_field :price, size: 35 %></td>
           </tr>
+          <tr>
+            <th>提供ステータス</th>
+            <th>
+              <%= f.radio_button :is_active, false %><%= f.label :is_active, "利用停止" %>
+              <%= f.radio_button :is_active, true %><%= f.label :is_active, "利用可能" %>
+            </th>
+        </tr>
         </tbody>
       </table>
     </div>

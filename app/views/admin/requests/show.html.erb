@@ -20,8 +20,13 @@
           <th><%= @request.pay_method_i18n %></th>
         </tr>
         <tr>
-          <th></th>
-          <th></th>
+          <th>申し込みステータス</th>
+          <th>
+            <%= form_with model: @request, url: admin_request_path(request) do |f| %>
+              <%= f.select :requests_status, options_for_select(Request.requests_statuses.map { |key, value| [I18n.t("enums.request.requests_status.#{key}"), key] }) %>
+              <%= f.submit "更新", class:"btn btn-sm btn-success", method: :patch %>
+            <% end %>
+          </th>
         </tr>
       </tbody>
     </table>
@@ -35,6 +40,7 @@
             <th>単価(税込)</th>
             <th>数量</th>
             <th>小計</th>
+            <th>各ステータス</th>
           </tr>
         </thead>
         <tbody>
@@ -44,6 +50,14 @@
             <td><%= number_with_delimiter(request_detail.service.with_tax_price, delimiter: ',') %></td>
             <td><%= request_detail.amount %></td>
             <td><%= number_with_delimiter(request_detail.subtotal, delimiter: ',') %></td>
+            <td>
+              <%= form_with model: request_detail, url: admin_request_detail_path(request_detail) do |f| %>
+                <%= f.select :storage_status, options_for_select(RequestDetail.storage_statuses.map { |key, value| [I18n.t("enums.request_detail.storage_status.#{key}"), key] }) %>
+                <%= f.select :sale_status, options_for_select(RequestDetail.sale_statuses.map { |key, value| [I18n.t("enums.request_detail.sale_status.#{key}"), key] }) %>
+                <%= f.select :disposal_status, options_for_select(RequestDetail.disposal_statuses.map { |key, value| [I18n.t("enums.request_detail.disposal_status.#{key}"), key] }) %>
+                <%= f.submit "更新", class:"btn btn-sm btn-success", method: :patch %>
+              <% end %>
+            </td>
           </tr>
           <% end %>
         </tbody>

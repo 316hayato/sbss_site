@@ -26,11 +26,11 @@ class Public::RequestsController < ApplicationController
   end
 
   def create
-    # 注文(Order)モデルに注文を保存
+    # 申し込み(request)モデルに注文を保存
     request = Request.new(request_params)
     request.customer_id = current_customer.id
     if request.save
-    # 注文詳細(OrderDetail)モデルにカート内商品の情報をもとに保存
+    # 申し込み内容(RequestDetail)モデルに利用予定サービスの情報をもとに保存
       @request_lists = current_customer.request_lists
       @request_lists.each do |request_list|
         request_detail = RequestDetail.new
@@ -40,12 +40,12 @@ class Public::RequestsController < ApplicationController
         request_detail.amount = 30
         request_detail.save
       end
-    # カート内商品を全て削除
+    # 利用予定サービスを全て削除
       current_customer.request_lists.destroy_all
     # 注文完了画面に遷移
       redirect_to thanx_requests_path
     else
-      flash[:alert] = "注文失敗しました。"
+      flash[:alert] = "申し込み失敗しました。"
       redirect_to request_lists_path
     end
   end

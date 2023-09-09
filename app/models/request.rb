@@ -3,7 +3,7 @@ class Request < ApplicationRecord
   has_many :request_details, dependent: :destroy
 
   enum pay_method: { credit_card: 0, transfer: 1 }
-  # enum status: { waiting: 0, confirmation: 1, production: 2, preparation: 3, completion: 4 }
+  enum requests_status: { waiting: 0, confirmation: 1, in_use: 2, multi_use:3, cancel:4 }
 
   validates :pay_method, presence: true
   validates :postage, presence: true

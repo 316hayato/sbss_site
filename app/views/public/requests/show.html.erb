@@ -17,7 +17,10 @@
               <th>支払方法</th>
               <td><%= @request.pay_method_i18n %></td>
             </tr>
-
+            <tr>
+              <th>ステータス</th>
+              <td><%= @request.requests_status_i18n %></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -42,7 +45,7 @@
       </div>
     </div>
     <div class="row mx-auto">
-      <p class="font-weight-bold">注文内容</p>
+      <p class="font-weight-bold">申し込み内容</p>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -57,7 +60,7 @@
           <tr>
             <td><%= request_detail.service.service_name %></td>
             <td><%= number_with_delimiter(request_detail.service.with_tax_price, delimiter: ',') %></td>
-            <td><%= request_details.amount %></td>
+            <td><%= request_detail.amount %></td>
             <td><%= number_with_delimiter(request_detail.subtotal, delimiter: ',') %></td>
           </tr>
           <% end %>

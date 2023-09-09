@@ -4,6 +4,28 @@ ja:
       pay_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+      requests_status:
+        waiting: "入金待ち"
+        confirmation: "入金確認"
+        in_use: "サービス利用済み"
+        multi_use: "複数サービス利用済み"
+        cancel: "キャンセル"
+    request_detail:
+      storage_status:
+        storage_not_use: "保管未対応"
+        storage_working: "業者受取中"
+        storage_completion: "保管完了"
+        storage_cancel: "保管キャンセル"
+      sale_status:
+        sale_not_use: "売却未対応"
+        sale_working: "売却処理中"
+        sale_completion: "売却完了"
+        sale_cancel: "売却キャンセル"
+      disposal_status:
+        disposal_not_use: "処分未対応"
+        disposal_working: "処分処理中"
+        disposal_completion: "処分完了"
+        disposal_cancel: "処分キャンセル"
   activerecord:
     errors:
       messages:
@@ -21,7 +43,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -47,7 +69,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月

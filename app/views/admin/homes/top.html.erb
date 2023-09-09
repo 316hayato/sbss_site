@@ -7,7 +7,7 @@
           <th>申請日時</th>
           <th>依頼者</th>
           <th>利用冊数</th>
-          <th></th>
+          <th>申し込みステータス</th>
         </tr>
       </thead>
       <tbody>
@@ -20,7 +20,7 @@
               <% total += request_detail.amount %>
             <% end %>
           <td><%= total %></td>
-          <th></th>
+          <th><%= request.requests_status_i18n %></th>
         </tr>
         <% end %>
       </tbody>

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     patch 'customers/my_page' => 'customers#update'
     get 'customers/my_page/confirm_withdraw' => 'customers#confirm_withdraw'
     patch 'customers/my_page/withdraw' => 'customers#withdraw'
-    resources :requests,only: [:index, :create, :new, :show] do
+    resources :requests,only: [:index, :create, :new, :show, :update] do
       collection do
         post 'confirm'
         get 'thanx'

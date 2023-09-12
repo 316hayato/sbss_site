@@ -22,7 +22,7 @@
         <tr>
           <th>申し込みステータス</th>
           <th>
-            <%= form_with model: @request, url: admin_request_path(request) do |f| %>
+            <%= form_with model: @request, url: admin_request_path(@request) do |f| %>
               <%= f.select :requests_status, options_for_select(Request.requests_statuses.map { |key, value| [I18n.t("enums.request.requests_status.#{key}"), key] }) %>
               <%= f.submit "更新", class:"btn btn-sm btn-success", method: :patch %>
             <% end %>

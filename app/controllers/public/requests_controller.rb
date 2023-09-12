@@ -18,7 +18,7 @@ class Public::RequestsController < ApplicationController
     @postage = 800
     #支払金額用の変数
     @pay_money = @total_amount + @postage
-    # (「0」番の場合)ログインユーザーの住所
+    #ログインユーザーの住所
     @request = Request.new(request_params)
     @request.postal_code = current_customer.postal_code
     @request.address = current_customer.address

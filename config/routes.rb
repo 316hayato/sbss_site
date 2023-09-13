@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :services,only: [:index, :new, :create, :show, :edit, :update]
     resources :customers,only: [:index, :edit, :show, :update]
     resources :requests,only: [:show, :update]
-    resources :request_detail,only: [:update]
+    resources :request_details,only: [:update]
     resources :questions,only: [:index, :edit, :show, :update]
   end
 

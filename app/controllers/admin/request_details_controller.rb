@@ -1,10 +1,8 @@
 class Admin::RequestDetailsController < ApplicationController
   def update
     # 申し込み内容データを取得
-    request_detail = RequestDetail.find(params[:id])
-    # 申し込み内容に紐づく申し込みデータを取得
     request = Request.find(params[:request_id])
-    # ステータスを更新
+    request_detail = RequestDetail.find(params[:id])
     request_detail.update(request_detail_params)
     # 申し込みに紐づく申し込み内容の各ステータス
     storage_status_address = params[:request_detail][:storage_status].to_i         # 保存ステータス

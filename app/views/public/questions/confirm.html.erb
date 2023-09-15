@@ -1,2 +1,28 @@
-<h1>Public::Questions#confirm</h1>
-<p>Find me in app/views/public/questions/confirm.html.erb</p>
+<div class="container p-3">
+  <h3 class="ml-4">問い合わせ情報確認画面</h3>
+  <div class="row p-1">
+    <div class="col-8">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>問い合わせ名</th>
+            <th><%= @question.questions_name %></th>
+          </tr>
+          <tr>
+            <th>内容</th>
+            <th><%= @question.questions_introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <div class="text-center p-5">
+    <%= form_with model: @question, url: questions_path, method: :post do |f| %>
+      <%= f.hidden_field :questions_name, :value => @question.questions_name %>
+      <%= f.hidden_field :questions_introduction, :value =>@question.questions_introduction %>
+      <%= f.submit '送信する', class:"btn btn-success" %>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to "入力画面へ戻る",new_question_path, class:"btn btn-outline-secondary mx-2" %>
+  </div>
+</div>

@@ -1,2 +1,30 @@
-<h1>Admin::Questions#show</h1>
-<p>Find me in app/views/admin/questions/show.html.erb</p>
+<div class="container p-4">
+  <h3 class="font-weight-bold ml-5">問い合わせ詳細</h3>
+  <div class="row m-3">
+    <div class="col mr-auto">
+      <div class="row">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th>サービス名</th>
+              <td><%= @question.questions_name %></td>
+            </tr>
+            <tr>
+              <th>サービス説明</th>
+              <td><%= @question.questions_introduction %></td>
+            </tr>
+            <tr>
+              <th>回答ステータス</th>
+              <td>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= link_to "編集する",edit_admin_question_path, class:"btn btn-success m-3 py-2 px-4" %>
+  </div>
+</div>

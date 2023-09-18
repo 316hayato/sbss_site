@@ -1,34 +1,78 @@
 class Admin::RequestDetailsController < ApplicationController
   def update
     # 申し込み内容データを取得
-    request = Request.find(params[:request_id])
+    request = Request.find(params[:request_detail][:request_id])
+    # ↓紐づいた申し込み内容データを取得↓
     request_detail = RequestDetail.find(params[:id])
-    request_detail.update(request_detail_params)
     # 申し込みに紐づく申し込み内容の各ステータス
-    storage_status_address = params[:request_detail][:storage_status].to_i         # 保存ステータス
-    sale_status_address = params[:request_detail][:sale_status].to_i         # 売却ステータス
-    disposal_status_address = params[:request_detail][:disposal_status].to_i # 処理ステータス
-    # 複数のステータスが「完了」している場合
-    if  (storage_status_address == "2" && sale_status_address == "2") || (storage_status_address == "2" && disposal_status_address == "2") || 
-      (sale_status_address == "2" && disposal_status_address == "2") || (storage_status_address == "2" && sale_status_address == "2" && disposal_status_address == "2")
-      # 申し込みステータスを「複数サービス利用済み」に#更新
-      request.requests_status = "3" 
-      request.update 
-    # 各ステータスの1つが「完了」している場合
-    elsif storage_status_address == "2" || sale_status_address == "2" || disposal_status_address == "2"
-      # 申し込みステータスを「サービス利用済み」に更新
-      request.requests_status = "2" 
-      request.update 
+    # [保存ステータス] = request_detail.storage_status
+    # [売却ステータス] = request_detail.sale_status
+    # [処理ステータス] = request_detail.disposal_status
+    # 各ステータスを更新↓
+    if request_detail.update(request_detail_params)
+      # [サービスID] = request_detail.service_id
+      if request_detail.service_id = 1 # 申込内容が「保管サービス」
+        # 保存ステータスが「業者受取中」の場合
+        if request_detail.storage_status == "storage_working"
+          #申し込みステータスを「利用申請中」に更新する
+          request.update(requests_status: 2)
+        # 各ステータスが「保管完了」の場合
+        elsif request_detail.storage_status == "storage_completion"
+          #申し込みステータスを「サービス利用中」に更新する
+          request.update(requests_status: 3)
+        # 各ステータスが「保管キャンセル」の場合
+        elsif request_detail.storage_status == "storage_cancel"
+          #申し込みステータスを「キャンセル」に更新する
+          request.update(requests_status: 4)
+        else
+          flash[:alert] = "情報の更新に失敗しました。"
+        end
+      elsif request_detail.service_id = 2 # 申込内容が「売却サービス」
+        # 各ステータスが「売却処理中」の場合
+        if request_detail.sale_status == "sale_working"
+          #申し込みステータスを「利用申請中」に更新する
+          request.update(requests_status: 2)
+        # 各ステータスが「売却完了」の場合
+        elsif request_detail.sale_status == "sale_completion"
+          #申し込みステータスを「サービス利用中」に更新する
+          request.update(requests_status: 3)
+        # 各ステータスが「売却キャンセル」の場合
+        elsif request_detail.sale_status == "sale_cancel"
+          #申し込みステータスを「キャンセル」に更新する
+          request.update(requests_status: 4)
+        else
+          flash[:alert] = "情報の更新に失敗しました。"
+        end
+      elsif request_detail.service_id = 3 # 申込内容が「処分サービス」
+         # 各ステータスが「処分処理中」の場合
+        if request_detail.disposal_status == "disposal_working"
+          #申し込みステータスを「利用申請中」に更新する
+          request.update(requests_status: 2)
+        # 各ステータスが「処分完了」の場合
+        elsif request_detail.disposal_status == "disposal_completion"
+          #申し込みステータスを「サービス利用中」に更新する
+          request.update(requests_status: 3)
+        # 各ステータスが「処分キャンセル」の場合
+        elsif request_detail.disposal_status == "disposal_cancel"
+          #申し込みステータスを「キャンセル」に更新する
+          request.update(requests_status: 4)
+        else
+          flash[:alert] = "情報の更新に失敗しました。"
+        end
+      else
+        flash[:alert] = "情報の更新に失敗しました。"
+      end
     else
       flash[:alert] = "情報の更新に失敗しました。"
     end
+    # byebug
     redirect_to  admin_request_path(request)
   end
-  
+
   private
-  
+
   def request_detail_params
-    params.require(:request_detail).permit(:save_status, :sale_status, :disposal_status)
+    params.require(:request_detail).permit(:service_id, :storage_status, :sale_status, :disposal_status)
   end
-  
+
 end

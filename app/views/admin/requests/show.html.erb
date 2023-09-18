@@ -21,11 +21,24 @@
         </tr>
         <tr>
           <th>申し込みステータス</th>
+          <th><%= @request.requests_status_i18n %></th>
+        </tr>
+        <tr>
+          <th>ステータスの更新</th>
           <th>
+          <% if @request.requests_status == "waiting" %>
             <%= form_with model: @request, url: admin_request_path(@request) do |f| %>
-              <%= f.select :requests_status, options_for_select(Request.requests_statuses.map { |k, value| [I18n.t("enums.request.requests_status.#{k}"), k] }) %>
+              <%= f.select :requests_status, Request.requests_statuses.slice(:confirmation, :cancel).keys.map { |k| [I18n.t("enums.request.requests_status.#{k}"), k] } %>
               <%= f.submit "更新", class:"btn btn-sm btn-success", method: :patch %>
             <% end %>
+          <% elsif @request.requests_status == "cancel" %>
+            <p>なし</p>
+          <% else %>
+            <%= form_with model: @request, url: admin_request_path(@request) do |f| %>
+              <%= f.select :requests_status, Request.requests_statuses.slice(:cancel).keys.map { |k| [I18n.t("enums.request.requests_status.#{k}"), k] } %>
+              <%= f.submit "更新", class:"btn btn-sm btn-success", method: :patch %>
+            <% end %>
+          <% end %>
           </th>
         </tr>
       </tbody>
@@ -38,9 +51,8 @@
           <tr>
             <th>サービス名</th>
             <th>単価(税込)</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th>各ステータス</th>
+            <th>ステータス</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -48,14 +60,27 @@
           <tr>
             <td><%= request_detail.service.service_name %></td>
             <td><%= number_with_delimiter(request_detail.service.with_tax_price, delimiter: ',') %></td>
-            <td><%= request_detail.amount %></td>
-            <td><%= number_with_delimiter(request_detail.subtotal, delimiter: ',') %></td>
             <td>
               <%= form_with model: request_detail, url: admin_request_detail_path(request_detail.id) do |f| %>
-                <%= f.hidden_field :request_id, :value => @request.id %>
-                <%= f.select :storage_status, options_for_select(RequestDetail.storage_statuses.map { |key, value| [I18n.t("enums.request_detail.storage_status.#{key}"), key] }) %>
-                <%= f.select :sale_status, options_for_select(RequestDetail.sale_statuses.map { |key, value| [I18n.t("enums.request_detail.sale_status.#{key}"), key] }) %>
-                <%= f.select :disposal_status, options_for_select(RequestDetail.disposal_statuses.map { |key, value| [I18n.t("enums.request_detail.disposal_status.#{key}"), key] }) %>
+                <%= f.hidden_field :request_id, :value => request_detail.request_id %>
+                <%= f.hidden_field :service_id, :value => request_detail.service_id %>
+                <% if request_detail.service.id == 1 %>
+                  <%= f.select :storage_status, RequestDetail.storage_statuses.keys.map { |k| [I18n.t("enums.request_detail.storage_status.#{k}"), k] } %>
+                  <%= f.hidden_field :sale_status, :value => request_detail.sale_status %>
+                  <%= f.hidden_field :disposal_status, :value => request_detail.disposal_status %>
+                <% elsif request_detail.service_id == 2 %>
+                  <%= f.select :sale_status, RequestDetail.sale_statuses.keys.map { |k| [I18n.t("enums.request_detail.sale_status.#{k}"), k] } %>
+                  <%= f.hidden_field :storage_status, :value => request_detail.storage_status %>
+                  <%= f.hidden_field :disposal_status, :value => request_detail.disposal_status %>
+                <% elsif request_detail.service_id == 3 %>
+                  <%= f.select :disposal_status, RequestDetail.disposal_statuses.keys.map { |k| [I18n.t("enums.request_detail.disposal_status.#{k}"), k] } %>
+                  <%= f.hidden_field :storage_status, :value => request_detail.storage_status %>
+                  <%= f.hidden_field :sale_status, :value => request_detail.sale_status %>
+                <% elsif %>
+                  <p>ステータスなし</p>
+                <% end %>
+              </td>
+              <td>
                 <%= f.submit "更新", class:"btn btn-sm btn-success", method: :patch %>
               <% end %>
             </td>

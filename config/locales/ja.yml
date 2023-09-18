@@ -7,8 +7,8 @@ ja:
       requests_status:
         waiting: "入金待ち"
         confirmation: "入金確認"
-        in_use: "サービス利用済み"
-        multi_use: "複数サービス利用済み"
+        processing: "利用申請中"
+        in_use: "サービス利用中"
         cancel: "キャンセル"
     request_detail:
       storage_status:

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get 'homes/about' => 'homes#about', as: 'about'
     resources :services,only: [:index, :show]
-    resources :request_lists, only: [:index, :create, :destroy] do
+    resources :request_lists, only: [:index, :create, :destroy, :update] do
       collection do
         delete 'destroy_all'
       end
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
         get 'thanx'
       end
     end
-    resources :questions,only: [:create, :new] do
+    resources :questions,only: [:create, :new, :index, :show] do
       collection do
         post 'confirm'
         get 'thanx'

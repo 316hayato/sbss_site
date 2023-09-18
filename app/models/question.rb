@@ -3,5 +3,6 @@ class Question < ApplicationRecord
 
   validates :questions_name, presence: true
   validates :questions_introduction, presence: true
+  validates :questions_solution, presence: true
 
 end

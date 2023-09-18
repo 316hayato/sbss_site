@@ -7,16 +7,21 @@
         <tbody>
           <tr>
             <th>問い合わせ名</th>
-            <td><%= f.text_field :questions_name, size: 35 %></td>
+            <td><%= @question.questions_name %></td>
           </tr>
           <tr>
             <th>内容</th>
-            <td><%= f.text_area :questions_introduction, size: "38x5" %></td>
-            </tr>
+            <td><%= @question.questions_introduction %></td>
+          </tr>
+          <tr>
+            <th>回答</th>
+            <td><%= f.text_area :questions_solution, size: "38x5" %></td>
+          </tr>
           <tr>
             <th>回答ステータス</th>
             <th>
-
+              <%= f.radio_button :is_answer, false %><%= f.label :is_answer, "未回答" %>
+              <%= f.radio_button :is_answer, true %><%= f.label :is_answer, "回答済み" %>
             </th>
           </tr>
         </tbody>

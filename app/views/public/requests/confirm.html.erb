@@ -7,7 +7,7 @@
           <tr>
             <th class="font-weight-bold h5">サービス名</th>
             <th class="font-weight-bold h5">単価(税込)</th>
-            <th class="font-weight-bold h5">小計</th>
+            <th class="font-weight-bold h5">利用冊数</th>
           </tr>
         </thead>
         <tbody>
@@ -15,7 +15,7 @@
           <tr>
             <th><%= request_list.service.service_name %></th>
             <td><%= number_with_delimiter(request_list.service.with_tax_price, delimiter: ',') %></td>
-            <td><%= number_with_delimiter(request_list.subtotal, delimiter: ',') %></td>
+            <td><%= request_list.amount %></td>
           </tr>
           <% end %>
         </tbody>

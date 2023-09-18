@@ -25,6 +25,6 @@ class Admin::QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:questions_name, :questions_introduction)
+    params.require(:question).permit(:questions_solution, :is_answer)
   end
 end

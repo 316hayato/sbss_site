@@ -10,6 +10,7 @@ class Public::QuestionsController < ApplicationController
   def create
     question = Question.new(question_params)
     question.customer_id = current_customer.id
+    question.questions_solution = "回答をしてください"
     if question.save
       flash[:notice] = "登録に成功しました。"
       redirect_to thanx_questions_path
@@ -20,6 +21,14 @@ class Public::QuestionsController < ApplicationController
   end
 
   def thanx
+  end
+
+  def index
+    @questions = current_customer.questions.all
+  end
+
+  def show
+    @question = Question.find(params[:id])
   end
 
   private

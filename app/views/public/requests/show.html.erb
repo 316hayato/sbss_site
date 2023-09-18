@@ -1,12 +1,12 @@
 <div class="container">
-  <h3 class="m-3">注文履歴詳細画面</h3>
+  <h3 class="m-3">サービス利用履歴詳細画面</h3>
     <div class="row mx-auto">
       <div class="col-6">
-        <p class="font-weight-bold">注文情報</p>
+        <p class="font-weight-bold">利用情報</p>
         <table class="table table-bordered">
           <tbody>
             <tr>
-              <th>注文日</th>
+              <th>申請日</th>
               <td><%= @request.created_at.strftime('%Y/%m/%d') %></td>
             </tr>
             <tr>
@@ -49,10 +49,9 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>商品</th>
+            <th>サービス名</th>
             <th>単価(税込)</th>
-            <th>個数</th>
-            <th>小計</th>
+            <th>利用冊数</th>
           </tr>
         </thead>
         <tbody>
@@ -60,8 +59,7 @@
           <tr>
             <td><%= request_detail.service.service_name %></td>
             <td><%= number_with_delimiter(request_detail.service.with_tax_price, delimiter: ',') %></td>
-            <td><%= request_detail.amount %></td>
-            <td><%= number_with_delimiter(request_detail.subtotal, delimiter: ',') %></td>
+            <td><%= request_detail.amount %>冊</td>
           </tr>
           <% end %>
         </tbody>

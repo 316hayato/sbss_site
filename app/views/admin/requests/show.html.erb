@@ -50,6 +50,7 @@
         <thead>
           <tr>
             <th>サービス名</th>
+            <th>利用冊数</th>
             <th>単価(税込)</th>
             <th>ステータス</th>
             <th></th>
@@ -59,6 +60,7 @@
           <% @request_details.each do |request_detail| %>
           <tr>
             <td><%= request_detail.service.service_name %></td>
+            <td><%= request_detail.amount %></td>
             <td><%= number_with_delimiter(request_detail.service.with_tax_price, delimiter: ',') %></td>
             <td>
               <%= form_with model: request_detail, url: admin_request_detail_path(request_detail.id) do |f| %>

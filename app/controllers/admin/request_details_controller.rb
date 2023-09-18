@@ -11,56 +11,92 @@ class Admin::RequestDetailsController < ApplicationController
     # 各ステータスを更新↓
     if request_detail.update(request_detail_params)
       # [サービスID] = request_detail.service_id
-      if request_detail.service_id = 1 # 申込内容が「保管サービス」
+      if request_detail.service_id = 1 # 申込内容が「保管サービス」storage_not_use
         # 保存ステータスが「業者受取中」の場合
         if request_detail.storage_status == "storage_working"
           #申し込みステータスを「利用申請中」に更新する
-          request.update(requests_status: 2)
-        # 各ステータスが「保管完了」の場合
+          if request.requests_status != 2
+            request.update(requests_status: 2)
+          else
+            flash[:alert] = "最新の申し込みステータスです。"
+          end
+        # 保存ステータスが「保管完了」の場合
         elsif request_detail.storage_status == "storage_completion"
           #申し込みステータスを「サービス利用中」に更新する
-          request.update(requests_status: 3)
-        # 各ステータスが「保管キャンセル」の場合
+          if request.requests_status != 3
+            request.update(requests_status: 3)
+          else
+            flash[:alert] = "最新の申し込みステータスです。"
+          end
+        # 保存ステータスが「保管キャンセル」の場合
         elsif request_detail.storage_status == "storage_cancel"
           #申し込みステータスを「キャンセル」に更新する
-          request.update(requests_status: 4)
+          if request.requests_status != 4
+            request.update(requests_status: 4)
+          else
+            flash[:alert] = "最新の申し込みステータスです。"
+          end
         else
-          flash[:alert] = "情報の更新に失敗しました。"
+          flash[:alert] = "不正なステータスが入力されました。"
         end
       elsif request_detail.service_id = 2 # 申込内容が「売却サービス」
-        # 各ステータスが「売却処理中」の場合
+        # 売却ステータスが「売却処理中」の場合
         if request_detail.sale_status == "sale_working"
           #申し込みステータスを「利用申請中」に更新する
-          request.update(requests_status: 2)
-        # 各ステータスが「売却完了」の場合
+          if request.requests_status != 2
+            request.update(requests_status: 2)
+          else
+            flash[:alert] = "最新の申し込みステータスです。"
+          end
+        # 売却ステータスが「売却完了」の場合
         elsif request_detail.sale_status == "sale_completion"
           #申し込みステータスを「サービス利用中」に更新する
-          request.update(requests_status: 3)
-        # 各ステータスが「売却キャンセル」の場合
+          if request.requests_status != 3
+            request.update(requests_status: 3)
+          else
+            flash[:alert] = "最新の申し込みステータスです。"
+          end
+        # 売却ステータスが「売却キャンセル」の場合
         elsif request_detail.sale_status == "sale_cancel"
           #申し込みステータスを「キャンセル」に更新する
-          request.update(requests_status: 4)
+          if request.requests_status != 4
+            request.update(requests_status: 4)
+          else
+            flash[:alert] = "最新の申し込みステータスです。"
+          end
         else
-          flash[:alert] = "情報の更新に失敗しました。"
+          flash[:alert] = "不正なステータスが入力されました。"
         end
       elsif request_detail.service_id = 3 # 申込内容が「処分サービス」
-         # 各ステータスが「処分処理中」の場合
+         # 処分ステータスが「処分処理中」の場合
         if request_detail.disposal_status == "disposal_working"
           #申し込みステータスを「利用申請中」に更新する
-          request.update(requests_status: 2)
-        # 各ステータスが「処分完了」の場合
+          if request.requests_status != 2
+            request.update(requests_status: 2)
+          else
+            flash[:alert] = "最新の申し込みステータスです。"
+          end
+        # 処分ステータスが「処分完了」の場合
         elsif request_detail.disposal_status == "disposal_completion"
           #申し込みステータスを「サービス利用中」に更新する
-          request.update(requests_status: 3)
-        # 各ステータスが「処分キャンセル」の場合
+          if request.requests_status != 3
+            request.update(requests_status: 3)
+          else
+            flash[:alert] = "最新の申し込みステータスです。"
+          end
+        # 処分ステータスが「処分キャンセル」の場合
         elsif request_detail.disposal_status == "disposal_cancel"
           #申し込みステータスを「キャンセル」に更新する
-          request.update(requests_status: 4)
+          if request.requests_status != 4
+            request.update(requests_status: 4)
+          else
+            flash[:alert] = "最新の申し込みステータスです。"
+          end
         else
-          flash[:alert] = "情報の更新に失敗しました。"
+          flash[:alert] = "不正なステータスが入力されました。"
         end
       else
-        flash[:alert] = "情報の更新に失敗しました。"
+        flash[:alert] = "適応外のサービスが入力されました。"
       end
     else
       flash[:alert] = "情報の更新に失敗しました。"

@@ -1,7 +1,13 @@
 class Public::RequestListsController < ApplicationController
   def index
-    @total_amount = 0
     @request_lists = RequestList.all
+    total = 0
+    #合計金額用のeachメゾット
+    @request_lists.each do |request_lists|
+      total += request_lists.subtotal
+    end
+    #合計金額用の変数
+    @total_amount = total
   end
 
   def create
@@ -11,6 +17,17 @@ class Public::RequestListsController < ApplicationController
     request_list.save
     flash[:notice] = "依頼サービスを追加しました。"
     redirect_to request_lists_path
+  end
+
+  def update
+    request_list = RequestList.find(params[:id])
+    if request_list.update(request_list_params)
+      flash[:notice] = "更新に成功しました。"
+      redirect_to request_lists_path
+    else
+      flash[:alert] = "更新に失敗しました。"
+      redirect_to request_lists_path
+    end
   end
 
   def destroy_all
@@ -27,6 +44,6 @@ class Public::RequestListsController < ApplicationController
   private
 
   def request_list_params
-      params.require(:request_list).permit(:service_id)
+      params.require(:request_list).permit(:service_id, :amount)
   end
 end

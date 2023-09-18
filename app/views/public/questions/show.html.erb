@@ -1,0 +1,42 @@
+<div class="container">
+  <h3 class="m-3">申し込み履歴詳細画面</h3>
+    <div class="row mx-auto">
+      <div class="col-6">
+        <p class="font-weight-bold">申し込み情報</p>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>申し込み日</th>
+              <td><%= @question.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <th>タイトル</th>
+              <td><%= @question.questions_name %></td>
+            </tr>
+            <tr>
+              <th>詳細内容</th>
+              <td><%= @question.questions_introduction %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <p class="font-weight-bold">回答情報</p>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>回答日</th>
+              <td><%= @question.updated_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <th>回答内容</th>
+              <td><%= @question.questions_solution %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <div>
+    <%= link_to "戻る",questions_path, class:"btn btn-outline-secondary mx-2" %>
+  </div>
+</div>

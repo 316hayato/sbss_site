@@ -12,8 +12,8 @@
       <thead>
         <tr>
           <th class="font-weight-bold h5">サービス名</th>
+          <th class="font-weight-bold h5">利用冊数</th>
           <th class="font-weight-bold h5">単価(税込)</th>
-          <th class="font-weight-bold h5">小計</th>
           <th class="font-weight-bold h5"></th>
         </tr>
       </thead>
@@ -22,11 +22,13 @@
         <% @request_lists.each do |request_list| %>
         <tr>
           <td><%= request_list.service.service_name %></td>
-          <td><%= number_with_delimiter(request_list.service.with_tax_price, delimiter: ',') %></td>
           <td>
-            <%= number_with_delimiter(request_list.subtotal, delimiter: ',') %>
-            <% @total_amount += request_list.subtotal %>
+            <%= form_with model: request_list, url: request_list_path(request_list) do |f| %>
+              <%= f.select :amount, options_for_select(*[1..1000], request_list.amount) %>
+              <%= f.submit "変更", class:"btn btn-sm btn-success", method: :patch %>
+            <% end %>
           </td>
+          <td><%= number_with_delimiter(request_list.service.with_tax_price, delimiter: ',') %></td>
           <th class="text-center"><%= link_to "削除する",request_list_path(request_list.id), class:"btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
         </tr>
         <% end %>

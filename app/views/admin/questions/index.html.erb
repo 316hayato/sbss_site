@@ -1,4 +1,4 @@
-<<div class="container p-4">
+<div class="container p-4">
   <h3 class="font-weight-bold my-3 ml-5">問い合わせリスト</h3>
   <div class="row m-auto p-auto">
     <table class="table">
@@ -6,7 +6,7 @@
         <tr>
           <th>問い合わせID</th>
           <th>問い合わせ名</th>
-          <th>回答ステータス</th>
+          <th>ステータス</th>
         </tr>
       </thead>
       <tbody>
@@ -15,7 +15,11 @@
           <td><%= question.id %></td>
           <td><%= link_to question.questions_name, admin_question_path(question.id) %></td>
           <td>
-            
+            <% if question.is_answer %>
+              <p class="text-secondary font-weight-bold">回答済み</p>
+            <% else %>
+              <p class="text-success font-weight-bold">未回答</p>
+            <% end %>
           </td>
         </tr>
         <% end %>

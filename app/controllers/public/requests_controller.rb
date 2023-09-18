@@ -37,7 +37,7 @@ class Public::RequestsController < ApplicationController
         request_detail.request_id = request.id
         request_detail.service_id = request_list.service_id
         request_detail.price = request_list.service.with_tax_price
-        request_detail.amount = 30
+        request_detail.amount = request_list.amount
         request_detail.save
       end
     # 利用予定サービスを全て削除

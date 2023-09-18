@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 2023_09_01_162347) do
     t.integer "customer_id", null: false
     t.string "questions_name", null: false
     t.text "questions_introduction", null: false
+    t.text "questions_solution", null: false
+    t.boolean "is_answer", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -95,6 +97,7 @@ ActiveRecord::Schema.define(version: 2023_09_01_162347) do
   create_table "request_lists", force: :cascade do |t|
     t.integer "service_id", null: false
     t.integer "customer_id", null: false
+    t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

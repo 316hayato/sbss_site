@@ -1,0 +1,30 @@
+<div class="container">
+  <h3 class="ml-4">問い合わせ履歴一覧</h3>
+  <div class="row m-2">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>申請日</th>
+          <th>タイトル</th>
+          <th>ステータス</th>
+          <th>詳細はこちら</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| %>
+        <tr>
+          <td><%= question.created_at.strftime('%y/%m/%d') %></td>
+          <td><%= question.questions_name %></td>
+          <td><% if question.is_answer %>
+              <p class="text-secondary font-weight-bold">回答済み</p>
+            <% else %>
+              <p class="text-success font-weight-bold">未回答</p>
+            <% end %>
+          </td>
+          <td><%= link_to "表示する", question_path(question.id), class:"btn btn-primary" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

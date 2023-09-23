@@ -5,7 +5,8 @@ class Public::RequestsController < ApplicationController
 
   def confirm
     #リスト内サービスの表示用変数
-    @request_lists = current_customer.request_lists.all
+    @customer = current_customer
+    @request_lists = @customer.request_lists.all
     #合計金額用の変数
     total = 0
     #合計金額用のeachメゾット
@@ -20,9 +21,9 @@ class Public::RequestsController < ApplicationController
     @pay_money = @total_amount + @postage
     #ログインユーザーの住所
     @request = Request.new(request_params)
-    @request.postal_code = current_customer.postal_code
-    @request.address = current_customer.address
-    @request.address_name = current_customer.last_name + current_customer.first_name
+    @request.postal_code = @customer.postal_code
+    @request.address = @customer.address
+    @request.address_name = @customer.last_name + @customer.first_name
   end
 
   def create
@@ -51,6 +52,7 @@ class Public::RequestsController < ApplicationController
   end
 
   def thanx
+    current_customer.request_lists.destroy_all
   end
 
   def index

@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-3">
             <%= f.hidden_field :service_id, :value => @service.id %>
-            <%= f.select :amount, *[1..100], placeholder:"利用冊数(最大100冊)選択" %>
+            <p class="font-weight-normal">利用冊数 <%= f.select :amount, *[1..100] %> (最大100冊)</p>
           </div>
           <div class="col-6">
             <%= f.submit '依頼リストに入れる', class:"btn btn-success" %>

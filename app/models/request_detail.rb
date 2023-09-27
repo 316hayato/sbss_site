@@ -18,4 +18,5 @@ class RequestDetail < ApplicationRecord
     end
     result
   end
+
 end

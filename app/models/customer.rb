@@ -22,4 +22,20 @@ class Customer < ApplicationRecord
   has_many :requests, dependent: :destroy
   has_many :request_lists, dependent: :destroy
   has_many :questions
+
+# 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @customer = Customer.where("email LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @customer = Customer.where("email LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @customer = Customer.where("email LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @customer = Customer.where("email LIKE?","%#{word}%")
+    else
+      @customer = Customer.all
+    end
+  end
+
 end

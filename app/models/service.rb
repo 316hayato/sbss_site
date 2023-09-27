@@ -20,4 +20,19 @@ class Service < ApplicationRecord
   def with_tax_price
     (price * 1.1).floor
   end
+
+# 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @service = Service.where("service_name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @service = Service.where("service_name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @service = Service.where("service_name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @service = Service.where("service_name LIKE?","%#{word}%")
+    else
+      @service = Service.all
+    end
+  end
 end

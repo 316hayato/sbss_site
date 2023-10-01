@@ -12,7 +12,6 @@ class Public::QuestionsController < ApplicationController
     question.customer_id = current_customer.id
     question.questions_solution = "回答をしてください"
     if question.save
-      flash[:notice] = "登録に成功しました。"
       redirect_to thanx_questions_path
     else
       flash[:alert] = "登録に失敗しました。"

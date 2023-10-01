@@ -26,13 +26,9 @@ class Customer < ApplicationRecord
 # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
-      @customer = Customer.where("email LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @customer = Customer.where("email LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @customer = Customer.where("email LIKE?","%#{word}")
+      @customer = Customer.where("last_name LIKE? or first_name LIKE ? or last_name_kana LIKE ? or first_name_kana LIKE? or email LIKE?", "#{word}","#{word}","#{word}","#{word}","#{word}")
     elsif search == "partial_match"
-      @customer = Customer.where("email LIKE?","%#{word}%")
+      @customer = Customer.where("last_name LIKE? or first_name LIKE ? or last_name_kana LIKE ? or first_name_kana LIKE? or email LIKE?", "%#{word}%","%#{word}%","%#{word}%","%#{word}%","%#{word}%")
     else
       @customer = Customer.all
     end

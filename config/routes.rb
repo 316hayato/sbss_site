@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :requests,only: [:show, :update]
     resources :request_details,only: [:update]
     resources :questions,only: [:index, :edit, :show, :update]
+    get "search" => "searches#search"
+    # get "search_result" => "searches#search_result"
   end
 
   # 顧客側のルーティング設定
@@ -36,6 +38,8 @@ Rails.application.routes.draw do
         get 'thanx'
       end
     end
+    get "search" => "searches#search"
+    # get "search_result" => "searches#search_result"
   end
 
   # 管理者用
@@ -54,8 +58,6 @@ Rails.application.routes.draw do
   devise_scope :customer do
     post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
-  
-  get "search" => "searches#search"
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

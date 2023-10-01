@@ -27,6 +27,17 @@ ja:
         disposal_completion: "処分完了"
         disposal_cancel: "処分キャンセル"
   activerecord:
+    models:
+      customers: ユーザー
+    attributes:
+      customers:
+        last_name: 名前(名)
+        first_name: 名前(姓)
+        last_name_kana: 名前(カナ名)
+        first_name_kana: 名前(カナ姓)
+        email: メールアドレス
+        created_at: 登録日時
+        updated_at: 更新日時
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

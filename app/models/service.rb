@@ -25,10 +25,6 @@ class Service < ApplicationRecord
   def self.looks(search, word)
     if search == "perfect_match"
       @service = Service.where("service_name LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @service = Service.where("service_name LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @service = Service.where("service_name LIKE?","%#{word}")
     elsif search == "partial_match"
       @service = Service.where("service_name LIKE?","%#{word}%")
     else

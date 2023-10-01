@@ -1,0 +1,42 @@
+<h2><%= @title %></h2>
+<div class="container">
+  <div class="row m-4">
+  <h2>"<%= @word %>"の検索結果(全<%= @count %>件)</h2>
+  <table class="table table-hover table-inverse">
+  <!--検索対象モデルがServiceの時 -->
+  <% if @range == "Service" %>
+    <thead>
+      <tr>
+        <th>サービスID</th>
+        <th>サービス名</th>
+        <th>税抜価格</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @services.each do |service| %>
+        <tr>
+          <td><%= service.id %></td>
+          <td><%= link_to service.service_name, admin_service_path(service.id) %></td>
+          <td><%= number_with_delimiter(service.price, delimiter: ',') %></td>
+          <td>
+            <% if service.is_active %>
+              <p class="text-secondary font-weight-bold">利用可能</p>
+            <% else %>
+              <p class="text-success font-weight-bold">利用停止</p>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!-- @services が nil の場合の処理 -->
+    <tbody>
+      <tr>
+        <td colspan="2">データが見つかりません。</td>
+      </tr>
+    </tbody>
+  <% end %>
+  </table>
+  </div>
+</div>

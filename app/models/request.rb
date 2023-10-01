@@ -23,4 +23,16 @@ class Request < ApplicationRecord
   def total
     pay_money - postage
   end
+
+# 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @question = Request.where("address_name LIKE?", "#{word}")
+    elsif search == "partial_match"
+      @question = Request.where("address_name LIKE?","%#{word}%")
+    else
+      @question = Request.all
+    end
+  end
+
 end

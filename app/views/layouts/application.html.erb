@@ -22,13 +22,14 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <div class="btn-wrapper">
-                <% if customer_signed_in? %>
+              <% if customer_signed_in? %>
               <!--顧客ログイン済みの場合-->
                 <%= link_to "マイページ",customers_my_page_path(current_customer), class:"btn btn-outline-secondary mx-2" %>
                 <%= link_to "サービス一覧",services_path, class:"btn btn-outline-secondary mx-2" %>
                 <%= link_to "依頼予定リスト",request_lists_path, class:"btn btn-outline-secondary mx-2" %>
                 <%= link_to "お問い合わせはこちら",new_question_path, class:"btn btn-outline-secondary mx-2" %>
                 <%= link_to "ログアウト",destroy_customer_session_path, class:"btn btn-outline-danger mx-2", method: :delete %>
+                <%= render 'public/searches/search' %>
               <% elsif admin_signed_in? %>
               <!--管理者ログイン済みの場合-->
                 <%= link_to "サービス一覧",admin_services_path, class:"btn btn-outline-secondary mx-2" %>
@@ -36,6 +37,7 @@
                 <%= link_to "依頼履歴一覧",admin_root_path, class:"btn btn-outline-secondary mx-2" %>
                 <%= link_to "お問い合わせ一覧",admin_questions_path, class:"btn btn-outline-secondary mx-2" %>
                 <%= link_to "ログアウト",destroy_admin_session_path, class:"btn btn-outline-danger mx-2", method: :delete %>
+                <%= render 'admin/searches/search' %>
               <% else %>
                 <!--ログインしていない場合-->
                 <%= link_to "About",about_path, class:"btn btn-outline-secondary mx-2" %>

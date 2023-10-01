@@ -17,7 +17,7 @@
       <% @services.each do |service| %>
         <tr>
           <td><%= service.id %></td>
-          <td><%= link_to service.service_name, admin_service_path(service.id) %></td>
+          <td><%= link_to service.service_name, service_path(service.id) %></td>
           <td><%= number_with_delimiter(service.price, delimiter: ',') %></td>
           <td>
             <% if service.is_active %>

@@ -8,7 +8,7 @@
         <% @services.each do |service| %>
           <div class="item-box m-1">
             <%=link_to service_path(service.id) do %>
-            <%= image_tag service.image, size: "180x125" %>
+              <%= image_tag service.image, size: "180x125" %>
             <% end %>
             <p><%= link_to service.service_name, service_path(service.id) %></p>
             <p>¥ <%= number_with_delimiter(service.price, delimiter: ',') %></p>

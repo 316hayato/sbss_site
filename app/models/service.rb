@@ -31,4 +31,15 @@ class Service < ApplicationRecord
       @service = Service.all
     end
   end
+
+=begin
+# 販売中のみ表示(着手中)
+  def self.Sails(status)
+    if status
+      @service = Service.where("service_name LIKE?", "#{word}")
+    else
+      @service = Service.where("service_name LIKE?", "#{word}")
+    end
+  end
+=end
 end

@@ -1,6 +1,6 @@
 class Public::ServicesController < ApplicationController
   def index
-    @services = Service.all
+    @services = Service.where(is_active: false)
   end
 
   def show

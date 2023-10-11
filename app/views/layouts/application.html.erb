@@ -12,7 +12,7 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
+    <header class="bg-light shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="/"><span>SBSS</span></a>
@@ -51,17 +51,28 @@
         </div>
       </nav>
     </header>
-    <main class="mb-auto">
+    <main class="form-signin">
       <% flash.each do |message_type, message| %>
         <div class="flash-message <%= message_type %>"><%= message %></div>
       <% end %>
-    <%= yield %>
+      <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-2 pb-5">
-      <div class="containar mt-4">
-        <div class="row">
-          <div class="mx-auto">
-            <p>made in japan</p>
+    <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <p>あなたの不安を解消するサービスサイト</p>
+          </div>
+          <div class="col-md-8">
+            <h6 class="text-white mt-2 mb-3">Link</h6>
+            <ul class="p-0 list-unstyled">
+              <li>
+                <a href="" title="About" class="text-white-50">会社概要</a>
+              </li>
+              <li>
+                <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

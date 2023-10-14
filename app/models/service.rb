@@ -32,4 +32,16 @@ class Service < ApplicationRecord
     end
   end
 
+# 絞り込み機能
+  def self.sorts(search, word)
+    if search == "id"
+      @service = Service.where("id LIKE?", "%#{word}%")
+    elsif search == "name"
+      @service = Service.where("service_name LIKE?","%#{word}%")
+    elsif search == "price"
+      @service = Service.where("price LIKE?","%#{word}%")
+    else
+      @service = Service.all
+    end
+  end
 end

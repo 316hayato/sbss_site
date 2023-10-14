@@ -15,4 +15,15 @@ class Question < ApplicationRecord
       @question = Question.all
     end
   end
+
+# 絞り込み機能
+  def self.sorts(search, word)
+    if search == "id"
+      @question = Question.where("id LIKE?","%#{word}%")
+    elsif search == "name"
+      @question = Question.where("questions_name LIKE?","%#{word}%")
+    else
+      @question = Question.all
+    end
+  end
 end

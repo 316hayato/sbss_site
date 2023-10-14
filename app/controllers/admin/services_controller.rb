@@ -1,6 +1,7 @@
 class Admin::ServicesController < ApplicationController
   def index
-    @services = Service.all
+    @services = Service.sorts(params[:search], params[:word])
+    # @services = Service.all
   end
 
   def new

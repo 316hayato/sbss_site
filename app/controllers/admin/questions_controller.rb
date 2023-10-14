@@ -1,6 +1,7 @@
 class Admin::QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    @questions = Question.sorts(params[:search], params[:word])
+    # @questions = Question.all
   end
 
   def show

@@ -3,6 +3,13 @@
     <div class="col text-left ml-5">
       <h3 class="font-weight-bold ml-5">サービス一覧</h3>
     </div>
+    <div class="search_form">
+      <%= form_with url: admin_services_path, local: true, method: :get do |f| %>
+        <%= f.text_field :word %>
+        <%= f.select :search, options_for_select([["サービスID","id"], ["サービス名","name"], ["税抜価格","price"]]) %>
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      <% end %>
+    </div>
     <div class="col text-right">
       <%= link_to "新規登録",new_admin_service_path %>
     </div>

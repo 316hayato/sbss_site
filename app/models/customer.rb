@@ -34,4 +34,17 @@ class Customer < ApplicationRecord
     end
   end
 
+# 絞り込み機能
+  def self.sorts(search, word)
+    if search == "id"
+      @customer = Customer.where("id LIKE?", "%#{word}%")
+    elsif search == "name"
+      @customer = Customer.where("last_name LIKE? or first_name LIKE ? or last_name_kana LIKE ? or first_name_kana LIKE? or email LIKE?", "%#{word}%","%#{word}%","%#{word}%","%#{word}%","%#{word}%")
+    elsif search == "email"
+      @customer = Customer.where("email LIKE?", "%#{word}%")
+    else
+      @customer = Customer.all
+    end
+  end
+
 end

@@ -27,11 +27,22 @@ class Request < ApplicationRecord
 # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
-      @question = Request.where("address_name LIKE?", "#{word}")
+      @request = Request.where("address_name LIKE?", "#{word}")
     elsif search == "partial_match"
-      @question = Request.where("address_name LIKE?","%#{word}%")
+      @request = Request.where("address_name LIKE?","%#{word}%")
     else
-      @question = Request.all
+      @request = Request.all
+    end
+  end
+
+# 絞り込み機能
+  def self.sorts(search, word)
+    if search == "created_at"
+      @request = Request.where("created_at LIKE?", "%#{word}%")
+    elsif search == "address_name"
+      @request = Request.where("address_name LIKE?","%#{word}%")
+    else
+      @request = Request.all
     end
   end
 

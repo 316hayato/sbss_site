@@ -1,4 +1,4 @@
-<div class="container p-4">
+<div class="container">
   <h3 class="font-weight-bold my-3 ml-5"><%= "#{@customer.last_name}#{@customer.first_name}" %>さんの会員詳細</h3>
   <div class="row">
     <div class="col-2 m-auto"><p class="font-weight-bold">会員ID</p></div>
@@ -30,10 +30,10 @@
         <p class="text-success font-weight-bold">有効</p>
       <% end %>
     </div>
-    <div class="w-100"></div>
-    <div class="col-2 m-auto"></div>
-    <div class="col-2"><%= link_to "編集する",edit_admin_customer_path(@customer.id), class:"btn btn-success" %></div>
-    <div class="col"><%= link_to "注文履歴一覧を見る",admin_root_path, class:"btn btn-primary" %></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col m-auto"><%= link_to "編集する",edit_admin_customer_path(@customer.id), class:"btn btn-success" %></div>
     </div>
   </div>
 </div>

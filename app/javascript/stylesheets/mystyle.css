@@ -6,6 +6,7 @@
 }
 
 main {
+  height: 100%; /* 横幅800px */
   width: 100%; /* 横幅800px */
   display: flex; /* Flexboxの利用 */
   justify-content: center; /* 要素の横並び・中央寄せ */

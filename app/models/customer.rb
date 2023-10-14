@@ -26,9 +26,9 @@ class Customer < ApplicationRecord
 # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
-      @customer = Customer.where("last_name LIKE? or first_name LIKE ? or last_name_kana LIKE ? or first_name_kana LIKE? or email LIKE?", "#{word}","#{word}","#{word}","#{word}","#{word}")
+      @customer = Customer.where("last_name LIKE? or first_name LIKE ? or last_name_kana LIKE ? or first_name_kana LIKE?", "#{word}","#{word}","#{word}","#{word}")
     elsif search == "partial_match"
-      @customer = Customer.where("last_name LIKE? or first_name LIKE ? or last_name_kana LIKE ? or first_name_kana LIKE? or email LIKE?", "%#{word}%","%#{word}%","%#{word}%","%#{word}%","%#{word}%")
+      @customer = Customer.where("last_name LIKE? or first_name LIKE ? or last_name_kana LIKE ? or first_name_kana LIKE?", "%#{word}%","%#{word}%","%#{word}%","%#{word}%")
     else
       @customer = Customer.all
     end
@@ -39,7 +39,7 @@ class Customer < ApplicationRecord
     if search == "id"
       @customer = Customer.where("id LIKE?", "%#{word}%")
     elsif search == "name"
-      @customer = Customer.where("last_name LIKE? or first_name LIKE ? or last_name_kana LIKE ? or first_name_kana LIKE? or email LIKE?", "%#{word}%","%#{word}%","%#{word}%","%#{word}%","%#{word}%")
+      @customer = Customer.where("last_name LIKE? or first_name LIKE ?", "%#{word}%","%#{word}%")
     elsif search == "email"
       @customer = Customer.where("email LIKE?", "%#{word}%")
     else

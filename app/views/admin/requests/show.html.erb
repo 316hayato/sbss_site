@@ -1,4 +1,4 @@
-<div class="container p-4">
+<div class="container p-3">
   <h3 class="font-weight-bold my-3 ml-5">依頼履歴詳細</h3>
   <div class="row m-auto p-auto">
     <table class="table table-borderless">
@@ -21,31 +21,45 @@
         </tr>
         <tr>
           <th>申し込みステータス</th>
-          <th><%= @request.requests_status_i18n %></th>
+          <th>
+            <%= form_with model: @request, url: admin_request_path(@request) do |f| %>
+              <%= f.select :requests_status, Request.requests_statuses.keys.map { |k| [I18n.t("enums.request.requests_status.#{k}"), k] } %>
+              <%= f.submit "更新", class:"btn btn-sm btn-success", method: :patch %>
+            <% end %></th>
         </tr>
+  <!---------------------------------------------------------------------------------------------->
+  <!--各ステータスを更新する申し込みステータスのみ表示させたい場合(将来対応)-->
+  <!--コメントアウト(<% if false %><% end %>)を外す-->
+
+  <% if false %>
+        <% if @request.requests_status == "waiting" %>
         <tr>
           <th>ステータスの更新</th>
           <th>
-          <% if @request.requests_status == "waiting" %>
             <%= form_with model: @request, url: admin_request_path(@request) do |f| %>
               <%= f.select :requests_status, Request.requests_statuses.slice(:confirmation, :cancel).keys.map { |k| [I18n.t("enums.request.requests_status.#{k}"), k] } %>
               <%= f.submit "更新", class:"btn btn-sm btn-success", method: :patch %>
             <% end %>
-          <% elsif @request.requests_status == "cancel" %>
-            <p>なし</p>
-          <% else %>
+          </th>
+        </tr>
+        <% else %>
+        <tr>
+          <th>ステータスの更新</th>
+          <th>
             <%= form_with model: @request, url: admin_request_path(@request) do |f| %>
               <%= f.select :requests_status, Request.requests_statuses.slice(:cancel).keys.map { |k| [I18n.t("enums.request.requests_status.#{k}"), k] } %>
               <%= f.submit "更新", class:"btn btn-sm btn-success", method: :patch %>
             <% end %>
-          <% end %>
           </th>
         </tr>
+        <% end %>
+  <% end %>
+  <!---------------------------------------------------------------------------------------------->
       </tbody>
     </table>
   </div>
   <div class="row m-auto p-auto">
-    <div class="col-6 m-auto p-auto">
+    <div class="col-7 m-auto p-auto">
       <table class="table">
         <thead>
           <tr>
@@ -91,7 +105,7 @@
         </tbody>
       </table>
     </div>
-    <div class="col-3 m-auto p-auto"></div>
+    <div class="col-2 m-auto p-auto"></div>
     <div class="col-3 m-auto p-auto">
       <div class="row text-bottom">
         <table class="table table-borderless">

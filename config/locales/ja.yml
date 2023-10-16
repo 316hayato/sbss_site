@@ -7,7 +7,7 @@ ja:
       requests_status:
         waiting: "入金待ち"
         confirmation: "入金確認"
-        processing: "利用申請中"
+        processing: "業者対応中"
         in_use: "サービス利用中"
         cancel: "キャンセル"
     request_detail:

@@ -10,8 +10,6 @@ class Admin::RequestDetailsController < ApplicationController
     # [処理ステータス] = request_detail.disposal_status
     # 各ステータスを更新↓
     if request_detail.update(request_detail_params)
-      # 以下ステータスの連動更新(=begin～=end)は将来対応
-=begin
       # [サービスID] = request_detail.service_id
       if request_detail.service_id = 1 # 申込内容が「保管サービス」
         # 保存ステータスが「業者受取中」の場合
@@ -19,24 +17,20 @@ class Admin::RequestDetailsController < ApplicationController
           #申し込みステータスを「業者対応中」に更新する
           if request.requests_status != 2
             request.update(requests_status: 2)
-          else
-            flash[:alert] = "最新の申し込みステータスです。"
+            flash[:alert] = "ステータスが更新されました"
           end
         # 保存ステータスが「保管完了」の場合
         elsif request_detail.storage_status == "storage_completion"
           #申し込みステータスを「サービス利用中」に更新する
           if request.requests_status != 3
             request.update(requests_status: 3)
-          else
-            flash[:alert] = "最新の申し込みステータスです。"
+            flash[:alert] = "ステータスが更新されました"
           end
         # 保存ステータスが「保管キャンセル」の場合
         elsif request_detail.storage_status == "storage_cancel"
           #申し込みステータスを「キャンセル」に更新する
           if request.requests_status != 4
-            request.update(requests_status: 4)
-          else
-            flash[:alert] = "最新の申し込みステータスです。"
+            flash[:alert] = "ステータスが更新されました"
           end
         else
           flash[:alert] = "不正なステータスが入力されました。"
@@ -47,24 +41,20 @@ class Admin::RequestDetailsController < ApplicationController
           #申し込みステータスを「業者対応中」に更新する
           if request.requests_status != 2
             request.update(requests_status: 2)
-          else
-            flash[:alert] = "最新の申し込みステータスです。"
+            flash[:alert] = "ステータスが更新されました"
           end
         # 売却ステータスが「売却完了」の場合
         elsif request_detail.sale_status == "sale_completion"
           #申し込みステータスを「サービス利用中」に更新する
           if request.requests_status != 3
             request.update(requests_status: 3)
-          else
-            flash[:alert] = "最新の申し込みステータスです。"
+            flash[:alert] = "ステータスが更新されました"
           end
         # 売却ステータスが「売却キャンセル」の場合
         elsif request_detail.sale_status == "sale_cancel"
           #申し込みステータスを「キャンセル」に更新する
           if request.requests_status != 4
-            request.update(requests_status: 4)
-          else
-            flash[:alert] = "最新の申し込みステータスです。"
+            flash[:alert] = "ステータスが更新されました"
           end
         else
           flash[:alert] = "不正なステータスが入力されました。"
@@ -75,24 +65,22 @@ class Admin::RequestDetailsController < ApplicationController
           #申し込みステータスを「業者対応中」に更新する
           if request.requests_status != 2
             request.update(requests_status: 2)
-          else
-            flash[:alert] = "最新の申し込みステータスです。"
+            flash[:alert] = "ステータスが更新されました"
           end
         # 処分ステータスが「処分完了」の場合
         elsif request_detail.disposal_status == "disposal_completion"
           #申し込みステータスを「サービス利用中」に更新する
           if request.requests_status != 3
             request.update(requests_status: 3)
-          else
-            flash[:alert] = "最新の申し込みステータスです。"
+            flash[:alert] = "ステータスが更新されました"
           end
         # 処分ステータスが「処分キャンセル」の場合
         elsif request_detail.disposal_status == "disposal_cancel"
           #申し込みステータスを「キャンセル」に更新する
           if request.requests_status != 4
-            request.update(requests_status: 4)
+            flash[:alert] = "ステータスが更新されました"
           else
-            flash[:alert] = "最新の申し込みステータスです。"
+            flash[:alert] = "最新のステータスです。"
           end
         else
           flash[:alert] = "不正なステータスが入力されました。"
@@ -100,7 +88,6 @@ class Admin::RequestDetailsController < ApplicationController
       else
         flash[:alert] = "適応外のサービスが入力されました。"
       end
-=end
     else
       flash[:alert] = "情報の更新に失敗しました。"
     end

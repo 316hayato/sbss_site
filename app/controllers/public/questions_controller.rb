@@ -10,7 +10,7 @@ class Public::QuestionsController < ApplicationController
   def create
     question = Question.new(question_params)
     question.customer_id = current_customer.id
-    question.questions_solution = "回答をしてください"
+    question.questions_solution = "　"
     if question.save
       redirect_to thanx_questions_path
     else

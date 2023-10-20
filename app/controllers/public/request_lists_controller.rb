@@ -1,6 +1,6 @@
 class Public::RequestListsController < ApplicationController
   def index
-    @request_lists = RequestList.all
+    @request_lists = current_customer.request_lists.all
     total = 0
     #合計金額用のeachメゾット
     @request_lists.each do |request_lists|
@@ -12,11 +12,18 @@ class Public::RequestListsController < ApplicationController
 
   def create
     request_list = current_customer.request_lists.find_by(service_id: params[:request_list][:service_id])
-    request_list = RequestList.new(request_list_params)
-    request_list.customer_id = current_customer.id
-    request_list.save
-    flash[:notice] = "依頼サービスを追加しました。"
-    redirect_to request_lists_path
+    if request_list
+      request_list.amount += params[:request_list][:amount].to_i
+      request_list.update(amount: request_list.amount)
+      flash[:notice] = "同じサービスの追加に成功しました。"
+      redirect_to request_lists_path
+    else
+      request_list = RequestList.new(request_list_params)
+      request_list.customer_id = current_customer.id
+      request_list.save
+      flash[:notice] = "依頼サービスを追加しました。"
+      redirect_to request_lists_path
+    end
   end
 
   def update

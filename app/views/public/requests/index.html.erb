@@ -3,7 +3,7 @@
   <div class="row m-2">
     <table class="table table-bordered">
       <thead>
-        <tr>
+        <tr bgcolor="#c0ffc0">
           <th>注文日</th>
           <th>配送先</th>
           <th>申込サービス</th>
@@ -12,7 +12,7 @@
           <th>注文詳細</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody bgcolor="#FFFFF0">
         <% @requests.each do |request| %>
         <tr>
           <td><%= request.created_at.strftime('%y/%m/%d') %></td>

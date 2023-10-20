@@ -1,5 +1,5 @@
 <div class="container p-3">
-  <h3 class="ml-4">依頼情報確認</h3>
+  <h3 class="font-weight-bold ml-3">依頼情報確認</h3>
   <div class="row p-1">
     <div class="col-8">
       <table class="table table-bordered">
@@ -49,8 +49,8 @@
     <div class="col-10 text-left"><%= @request.address_no_name %></div>
   </div>
   <div class="text-center p-5">
-  <% if @customer.email = 'guest@example.com' %>
-    <p><%= link_to "依頼を確定する",thanx_requests_path, class:"btn btn-sm btn-success ml-3" %></p>
+  <% if @customer.email == 'guest@example.com' %>
+    <p><%= link_to "完了ページへ",thanx_requests_path, class:"btn btn-sm btn-success ml-3" %></p>
   <% else %>
     <%= form_with model: @request, url: requests_path, method: :post do |f| %>
       <%= f.hidden_field :pay_method, :value => @request.pay_method %>

@@ -4,7 +4,7 @@
       <h3>依頼リスト</h3>
     </div>
     <div class="col text-right">
-      <%= link_to "リストを空にする", destroy_all_request_lists_path, class:"btn btn-sm btn-danger", method: :delete %>
+      <%= link_to "リストを空にする", destroy_all_request_lists_path, class:"btn btn-sm btn-danger", method: :delete,"data-confirm" => "本当にすべて削除しますか？" %>
     </div>
   </div>
   <div class="row">
@@ -14,7 +14,7 @@
           <th class="font-weight-bold h5">サービス名</th>
           <th class="font-weight-bold h5">利用冊数</th>
           <th class="font-weight-bold h5">単価(税込)</th>
-          <th class="font-weight-bold h5"></th>
+          <!--<th class="font-weight-bold h5"></th>-->
         </tr>
       </thead>
       <% if current_customer %>
@@ -24,12 +24,12 @@
           <td><%= request_list.service.service_name %></td>
           <td>
             <%= form_with model: request_list, url: request_list_path(request_list) do |f| %>
-              <%= f.select :amount, options_for_select(*[1..1000], request_list.amount) %>
-              <%= f.submit "変更", class:"btn btn-sm btn-success", method: :patch %>
+              <%= f.select :amount, options_for_select(*[1..1000], request_list.amount) %>冊
+              <%= f.submit "変更", class:"btn btn-sm btn-success ml-2", method: :patch %>
             <% end %>
           </td>
-          <td><%= number_with_delimiter(request_list.service.with_tax_price, delimiter: ',') %></td>
-          <th class="text-center"><%= link_to "削除する",request_list_path(request_list.id), class:"btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
+          <td><%= number_with_delimiter(request_list.service.with_tax_price, delimiter: ',') %>円</td>
+          <td class="text-center"><%= link_to "削除する",request_list_path(request_list.id), class:"btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
         </tr>
         <% end %>
       </tbody>
@@ -44,7 +44,7 @@
       <table class="table table-bordered">
         <tbody>
           <th>合計金額</th>
-          <td><%= number_with_delimiter(@total_amount, delimiter: ',') %></td>
+          <td><%= number_with_delimiter(@total_amount, delimiter: ',') %>円</td>
         </tbody>
       </table>
     </div>

@@ -1,6 +1,6 @@
-<h2><%= @title %></h2>
 <div class="container">
-  <div class="row m-4">
+  <h2 class="font-weight-bold"><%= @title %></h2>
+  <div class="row m-3">
   <h2>"<%= @word %>"の検索結果(全<%= @count %>件)</h2>
   <table class="table table-hover table-inverse">
   <!--検索対象モデルがUserの時 -->
@@ -95,9 +95,9 @@
           <td><%= number_with_delimiter(service.price, delimiter: ',') %></td>
           <td>
             <% if service.is_active %>
-              <p class="text-secondary font-weight-bold">利用可能</p>
+              <p class="text-secondary font-weight-bold">利用停止</p>
             <% else %>
-              <p class="text-success font-weight-bold">利用停止</p>
+              <p class="text-success font-weight-bold">利用可能</p>
             <% end %>
           </td>
         </tr>

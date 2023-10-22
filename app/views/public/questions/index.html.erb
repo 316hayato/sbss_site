@@ -1,8 +1,8 @@
 <div class="container">
-  <h3 class="ml-4">問い合わせ履歴一覧</h3>
+  <h2 class="font-weight-bold ml-4">問い合わせ履歴一覧</h2>
   <div class="row m-2">
     <table class="table table-bordered">
-      <thead>
+      <thead bgcolor="#c0ffc0">
         <tr>
           <th>申請日</th>
           <th>タイトル</th>
@@ -10,7 +10,7 @@
           <th>詳細はこちら</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody bgcolor="#FFFFF0">
         <% @questions.each do |question| %>
         <tr>
           <td><%= question.created_at.strftime('%y/%m/%d') %></td>

@@ -12,15 +12,22 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
+  <!--ヘッダー開始-->
     <header class="bg-light shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand" href="/"><%= image_tag "SBSS - MarkMaker Logo.jpg", size: '100x50' %></a>
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <%= image_tag "SBSS - MarkMaker Logo.jpg", size: '100x40' %>
+          </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
+              <div class="search_form mx-2" id="navbarNavDropdown">
+                <%= render 'public/searches/search' %>
+                <%= render 'admin/searches/search' %>
+              </div>
               <div class="btn-wrapper">
               <% if customer_signed_in? %>
               <!--顧客ログイン済みの場合-->
@@ -29,7 +36,6 @@
                 <%= link_to "依頼予定リスト",request_lists_path, class:"btn btn-outline-secondary mx-2" %>
                 <%= link_to "お問い合わせはこちら",new_question_path, class:"btn btn-outline-secondary mx-2" %>
                 <%= link_to "ログアウト",destroy_customer_session_path, class:"btn btn-outline-danger mx-2", method: :delete %>
-                <%= render 'public/searches/search' %>
               <% elsif admin_signed_in? %>
               <!--管理者ログイン済みの場合-->
                 <%= link_to "サービス一覧",admin_services_path, class:"btn btn-outline-secondary mx-2" %>
@@ -37,7 +43,6 @@
                 <%= link_to "依頼履歴一覧",admin_root_path, class:"btn btn-outline-secondary mx-2" %>
                 <%= link_to "お問い合わせ一覧",admin_questions_path, class:"btn btn-outline-secondary mx-2" %>
                 <%= link_to "ログアウト",destroy_admin_session_path, class:"btn btn-outline-danger mx-2", method: :delete %>
-                <%= render 'admin/searches/search' %>
               <% else %>
                 <!--ログインしていない場合-->
                 <%= link_to "About",about_path, class:"btn btn-outline-secondary mx-2" %>
@@ -51,31 +56,45 @@
         </div>
       </nav>
     </header>
+  <!--ヘッダー終了-->
+
+  <!--メイン開始-->
     <main>
-      <% flash.each do |message_type, message| %>
-        <div class="flash-message <%= message_type %>"><%= message %></div>
-      <% end %>
+      <div class="message-area">
+        <% flash.each do |message_type, message| %>
+          <div class="flash-message <%= message_type %>"><%= message %></div>
+        <% end %>
+      </div>
       <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
+  <!--メイン終了-->
+
+  <!--フッター開始-->
+    <footer class="bg-dark text-white py-4">
       <div class="container">
         <div class="row no-gutters">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <p>あなたの不安を解消するサービスサイト</p>
           </div>
-          <div class="col-md-8">
-            <h6 class="text-white mt-2 mb-3">Link</h6>
+          <div class="col-md-6 pl-3">
+            <h6 class="text-white mb-3">Link</h6>
             <ul class="p-0 list-unstyled">
               <li>
                 <a href="/homes/about" title="About" class="text-white-50">概要</a>
               </li>
               <li>
-                <a href="/" title="License informations" class="text-white-50">トップページ</a>
+                <a href="/" title="Top" class="text-white-50">トップページ</a>
+              </li>
+              <li>
+                <a href="/admins/sign_in" title="admin_sign_in" class="text-white-50">管理者ログイン</a>
               </li>
             </ul>
           </div>
         </div>
       </div>
     </footer>
+  <!--フッター終了-->
+
   </body>
+
 </html>

@@ -12,14 +12,54 @@
   justify-content: flex-start;/* 左揃え */
 }
 
+.wrapper { 
+  width: 100%;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+background-size: 1800% 1800%;
+
+-webkit-animation: rainbow 18s ease infinite;
+-z-animation: rainbow 18s ease infinite;
+-o-animation: rainbow 18s ease infinite;
+  animation: rainbow 18s ease infinite;}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
 /**********メイン設定**********/
 main {
   height: 100%;             /* 横幅800px */
   width: 100%;              /* 横幅800px */
-  background-color: #FFFFFF;
+  background-image: url("../images/24404936.jpg");             /* 画像のURLを指定       */
+  background-repeat: no-repeat;
   margin: 0 auto;           /* 要素の中央揃え */
   padding: 30px 0;       /* 上下に70px、左右に0pxの内側余白 */
   color: #deb887;
+}
+
+main.toumei {
+  background: rgba( 0, 0, 0, 0.25);                     /* 透明度を指定 */
 }
 
 .fsize{
@@ -38,8 +78,7 @@ main {
 
 .message-area {
   width: 100%; /* 横幅いっぱい */
-  height: 50px; /* 高さ300px */
-  margin: auto 40px;           /* 要素の中央揃え */
+  margin: 10px auto;           /* 要素の中央揃え */
 }
 
 .form-signin {
@@ -51,12 +90,12 @@ main {
   position: relative;
 }
 
-.mypege table{
-  width: 100%;
+table thead{
+  background-color: #c0ffc0;
 }
 
-.mypege table th{
-  width: 20%;
+table tbody{
+  background-color: #FFFFFF;
 }
 
 .mypege table td{

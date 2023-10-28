@@ -23,23 +23,22 @@
             <tr>
               <th><%= f.label :email, "メールアドレス" %></th>
               <th></th>
-              <th><%= f.email_field :email, autofocus: true, autocomplete: "email" %></th>
+              <th colspan="3"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></th>
             </tr>
             <tr>
               <th><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></th>
               <th></th>
-              <th><%= f.text_field :postal_code %></th>
+              <th colspan="3"><%= f.text_field :postal_code %></th>
             </tr>
             <tr>
-              <th><%= f.label :address, "住所" %>
-              </th>
+              <th><%= f.label :address, "住所" %></th>
               <th></th>
               <th colspan="3"><%= f.text_field :address, size: "50" %></th>
             </tr>
             <tr>
               <th><%= f.label :telephone_number, "電話番号(ハイフンなし)" %></th>
               <th></th>
-              <th><%= f.text_field :telephone_number %></th>
+              <th colspan="3"><%= f.text_field :telephone_number %></th>
             </tr>
             <tr>
               <th>
@@ -49,12 +48,12 @@
               <% end %>
               </th>
               <th></th>
-              <th><%= f.password_field :password, autocomplete: "new-password" %></th>
+              <th colspan="3"><%= f.password_field :password, autocomplete: "new-password" %></th>
             </tr>
             <tr>
               <th><%= f.label :password_confirmation, "パスワード(確認用)" %></th>
               <th></th>
-              <th><%= f.password_field :password_confirmation, autocomplete: "new-password" %></th>
+              <th colspan="3"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></th>
             </tr>
           </tbody>
         </table>

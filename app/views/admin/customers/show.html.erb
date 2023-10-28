@@ -1,28 +1,28 @@
 <div class="container">
   <h3 class="font-weight-bold my-3 ml-5"><%= "#{@customer.last_name}#{@customer.first_name}" %>さんの会員詳細</h3>
   <div class="row">
-    <div class="col-2 m-auto"><p class="font-weight-bold">会員ID</p></div>
-    <div class="col m-auto"><%= @customer.id %></div>
+    <div class="col m-auto text-right"><p class="font-weight-bold">会員ID</p></div>
+    <div class="col m-auto"><p><%= @customer.id %></p></div>
     <div class="w-100"></div>
-    <div class="col-2 m-auto"><p class="font-weight-bold">氏名</p></div>
+    <div class="col m-auto text-right"><p class="font-weight-bold">氏名</p></div>
     <div class="col m-auto"><%= "#{@customer.last_name}　#{@customer.first_name}" %></div>
     <div class="w-100"></div>
-    <div class="col-2 m-auto"><p class="font-weight-bold">フリガナ</p></div>
+    <div class="col m-auto text-right"><p class="font-weight-bold">フリガナ</p></div>
     <div class="col m-auto"><%= "#{@customer.last_name_kana}　#{@customer.first_name_kana}" %></div>
     <div class="w-100"></div>
-    <div class="col-2 m-auto"><p class="font-weight-bold">郵便番号</p></div>
+    <div class="col m-auto text-right"><p class="font-weight-bold">郵便番号</p></div>
     <div class="col m-auto"><%= @customer.postal_code %></div>
     <div class="w-100"></div>
-    <div class="col-2 m-auto"><p class="font-weight-bold">住所</p></div>
+    <div class="col m-auto text-right"><p class="font-weight-bold">住所</p></div>
     <div class="col m-auto"><%= @customer.address %></div>
     <div class="w-100"></div>
-    <div class="col-2 m-auto"><p class="font-weight-bold">電話番号</p></div>
+    <div class="col m-auto text-right"><p class="font-weight-bold">電話番号</p></div>
     <div class="col m-auto"><%= @customer.telephone_number %></div>
     <div class="w-100"></div>
-    <div class="col-2 m-auto"><p class="font-weight-bold">メールアドレス</p></div>
+    <div class="col m-auto text-right"><p class="font-weight-bold">メールアドレス</p></div>
     <div class="col m-auto"><%= @customer.email %></div>
     <div class="w-100"></div>
-    <div class="col-2 m-auto"><p class="font-weight-bold">会員ステータス</p></div>
+    <div class="col m-auto text-right"><p class="font-weight-bold">会員ステータス</p></div>
     <div class="col m-auto">
       <% if @customer.is_deleted %>
         <p class="text-secondary font-weight-bold">退会</p>
@@ -32,8 +32,6 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-2"></div>
-    <div class="col m-auto"><%= link_to "編集する",edit_admin_customer_path(@customer.id), class:"btn btn-success" %></div>
-    </div>
+    <%= link_to "編集する",edit_admin_customer_path(@customer.id), class:"btn btn-success mx-auto" %>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="container p-4">
-  <h3 class="font-weight-bold my-3 ml-5">会員一覧</h3>
+  <h3 class="font-weight-bold mb-3 ml-5">会員一覧</h3>
   <div class="search_form">
       <%= form_with url: admin_customers_path, local: true, method: :get do |f| %>
         <%= f.text_field :word %>
@@ -8,7 +8,7 @@
       <% end %>
     </div>
   <div class="row m-auto p-auto">
-    <table class="table">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>会員ID</th>

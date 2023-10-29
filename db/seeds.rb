@@ -13,6 +13,17 @@ Admin.find_or_create_by!(email: "hyakkaryouran1997316@me.com") do |admin|
   admin.password = "#{ENV['SECRET_KEY']}"
 end
 
+# ゲストログイン
+Customer.find_or_create_by!(email: 'guest@example.com') do |user|
+  user.password = SecureRandom.urlsafe_base64
+  user.last_name = "ゲスト"
+  user.first_name = "ユーザー"
+  user.last_name_kana = " "
+  user.first_name_kana = " "
+  user.postal_code = " "
+  user.address = " "
+  user.telephone_number = " "
+end
 
 # 初期サービス(デフォルト)
 Service.find_or_create_by!(service_name: "保管サービス") do |service|

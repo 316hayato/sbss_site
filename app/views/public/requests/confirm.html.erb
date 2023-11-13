@@ -49,7 +49,7 @@
     <div class="col-10 text-left"><%= @request.address_no_name %></div>
   </div>
   <div class="text-center p-5">
-  <% if @customer.email == 'guest@example.com' %>
+  <% if @customer.email == "guest@example.com" %>
     <p><%= link_to "完了ページへ",thanx_requests_path, class:"btn btn-sm btn-success ml-3" %></p>
   <% else %>
     <%= form_with model: @request, url: requests_path, method: :post do |f| %>

@@ -17,11 +17,15 @@
   <div class="row p-1">
     <div class="col-2">
       <div class="text-center">
+      <% if @customer.email == "guest@example.com" %>
+        <%= link_to "送信完了画面へ",thanx_questions_path, class:"btn btn-success" %>
+      <% else %>
         <%= form_with model: @question, url: questions_path, method: :post do |f| %>
           <%= f.hidden_field :questions_name, :value => @question.questions_name %>
           <%= f.hidden_field :questions_introduction, :value =>@question.questions_introduction %>
           <%= f.submit '送信する', class:"btn btn-success" %>
         <% end %>
+      <% end %>
       </div>
     </div>
     <div class="col-2">

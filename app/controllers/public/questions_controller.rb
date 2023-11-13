@@ -4,6 +4,7 @@ class Public::QuestionsController < ApplicationController
   end
 
   def confirm
+    @customer = current_customer
     @question = Question.new(question_params)
   end
 

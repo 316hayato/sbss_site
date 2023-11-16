@@ -1,35 +1,48 @@
 <div class="container">
   <h3 class="font-weight-bold my-3 ml-5"><%= "#{@customer.last_name}#{@customer.first_name}" %>さんの会員詳細</h3>
   <div class="row">
-    <div class="col m-auto text-right"><p class="font-weight-bold">会員ID</p></div>
-    <div class="col m-auto"><p><%= @customer.id %></p></div>
-    <div class="w-100"></div>
-    <div class="col m-auto text-right"><p class="font-weight-bold">氏名</p></div>
-    <div class="col m-auto"><%= "#{@customer.last_name}　#{@customer.first_name}" %></div>
-    <div class="w-100"></div>
-    <div class="col m-auto text-right"><p class="font-weight-bold">フリガナ</p></div>
-    <div class="col m-auto"><%= "#{@customer.last_name_kana}　#{@customer.first_name_kana}" %></div>
-    <div class="w-100"></div>
-    <div class="col m-auto text-right"><p class="font-weight-bold">郵便番号</p></div>
-    <div class="col m-auto"><%= @customer.postal_code %></div>
-    <div class="w-100"></div>
-    <div class="col m-auto text-right"><p class="font-weight-bold">住所</p></div>
-    <div class="col m-auto"><%= @customer.address %></div>
-    <div class="w-100"></div>
-    <div class="col m-auto text-right"><p class="font-weight-bold">電話番号</p></div>
-    <div class="col m-auto"><%= @customer.telephone_number %></div>
-    <div class="w-100"></div>
-    <div class="col m-auto text-right"><p class="font-weight-bold">メールアドレス</p></div>
-    <div class="col m-auto"><%= @customer.email %></div>
-    <div class="w-100"></div>
-    <div class="col m-auto text-right"><p class="font-weight-bold">会員ステータス</p></div>
-    <div class="col m-auto">
-      <% if @customer.is_deleted %>
-        <p class="text-secondary font-weight-bold">退会</p>
-      <% else %>
-        <p class="text-success font-weight-bold">有効</p>
-      <% end %>
-    </div>
+    <table class="table table-bordered m-4">
+      <tbody>
+        <tr>
+          <th>会員ID</th>
+          <th><%= @customer.id %></th>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <th><%= "#{@customer.last_name}　#{@customer.first_name}" %></th>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <th><%= "#{@customer.last_name_kana}　#{@customer.first_name_kana}" %></th>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <th><%= @customer.postal_code %></th>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <th><%= @customer.address %></th>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <th><%= @customer.telephone_number %></th>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <th><%= @customer.email %></th>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <th>
+            <% if @customer.is_deleted %>
+              <p class="text-secondary">退会</p>
+            <% else %>
+              <p class="text-success">有効</p>
+            <% end %>
+          </th>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="row">
     <%= link_to "編集する",edit_admin_customer_path(@customer.id), class:"btn btn-success mx-auto" %>

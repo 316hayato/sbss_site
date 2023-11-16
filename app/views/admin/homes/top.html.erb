@@ -23,7 +23,7 @@
         <% @requests.each do |request| %>
         <tr>
           <th><%= link_to request.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_request_path(request.id) %></th>
-          <th><%= request.address_name %></td>
+          <th><%= request.address_name %></th>
             <% total = 0 %>
             <% request.request_details.each do |request_detail| %>
               <% total += request_detail.amount %>

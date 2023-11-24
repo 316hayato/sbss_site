@@ -40,17 +40,19 @@
       </table>
     </div>
   </div>
-  <div class="row p-2">
-    <div class="col-2 font-weight-bold text-right">支払方法</div>
-    <div class="col-10 text-left"><%= @request.pay_method_i18n %></div>
+  <div class="col-8 bg-white text-border">
+    <div class="row p-2">
+      <div class="col-2 font-weight-bold text-right">支払方法</div>
+      <div class="col-10 text-left"><%= @request.pay_method_i18n %></div>
+    </div>
+    <div class="row p-2">
+      <div class="col-2 font-weight-bold text-right">お届け先</div>
+      <div class="col-10 text-left"><%= @request.address_no_name %></div>
+    </div>
   </div>
-  <div class="row p-2">
-    <div class="col-2 font-weight-bold text-right">お届け先</div>
-    <div class="col-10 text-left"><%= @request.address_no_name %></div>
-  </div>
-  <div class="text-center p-5">
+  <div class="text-center mt-5">
   <% if @customer.email == "guest@example.com" %>
-    <p><%= link_to "完了ページへ",thanx_requests_path, class:"btn btn-sm btn-success ml-3" %></p>
+    <p><%= link_to "完了ページへ",thanx_requests_path, class:"btn btn-success" %></p>
   <% else %>
     <%= form_with model: @request, url: requests_path, method: :post do |f| %>
       <%= f.hidden_field :pay_method, :value => @request.pay_method %>

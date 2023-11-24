@@ -2,27 +2,25 @@
   <div class="py-3">
     <h3 class="font-weight-bold ml-4">注文情報入力</h3>
     <%= form_with model: @request, url: confirm_requests_path, method: :post do |f| %>
+    <div class="text-border p-4 bg-white">
     <p class="font-weight-bold">支払方法</p>
-    <div class="ml-4">
-      <div>
+      <div class="ml-4">
         <%= f.radio_button :pay_method, Request.pay_methods.key(0) %>
         <%= f.label :pay_method_credit_card, Request.pay_methods_i18n[:credit_card] %>
       </div>
-      <div>
+      <div class="ml-4">
         <%= f.radio_button :pay_method, Request.pay_methods.key(1) %>
         <%= f.label :pay_method_transfer, Request.pay_methods_i18n[:transfer] %>
       </div>
-    </div>
     <p class="font-weight-bold">お届け先</p>
-    <div class="ml-4">
       <div class="ml-4">
         <p>〒<%= current_customer.postal_code %> <%= current_customer.address %><br>
         <%= current_customer.last_name %> <%= current_customer.first_name %></p>
       </div>
-      <div class="text-center">
-        <%= f.submit '確認画面へ進む', class:"btn btn-primary px-3" %>
-      </div>
     </div>
+      <div class="text-center">
+        <%= f.submit '確認画面へ進む', class:"btn btn-primary mt-3 px-3" %>
+      </div>
     <% end %>
   </div>
 </div>

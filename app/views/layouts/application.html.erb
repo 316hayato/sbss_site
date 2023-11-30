@@ -34,7 +34,7 @@
                 <%= link_to "マイページ",customers_my_page_path(current_customer), class:"btn btn-secondary mx-2" %>
                 <%= link_to "サービス一覧",services_path, class:"btn btn-secondary mx-2" %>
                 <%= link_to "依頼予定リスト",request_lists_path, class:"btn btn-secondary mx-2" %>
-                <%= link_to "お問い合わせはこちら",new_question_path, class:"btn btn-secondary mx-2" %>
+                <%= link_to "お問い合わせ",new_question_path, class:"btn btn-secondary mx-2" %>
                 <%= link_to "ログアウト",destroy_customer_session_path, class:"btn btn-danger mx-2", method: :delete %>
               <% elsif admin_signed_in? %>
               <!--管理者ログイン済みの場合-->

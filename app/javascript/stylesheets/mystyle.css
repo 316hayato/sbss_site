@@ -18,7 +18,7 @@
   justify-content: flex-start;/* 左揃え */
 }
 
-.wrapper { 
+.wrapper {
   width: 100%;
   left:0;
   right: 0;
@@ -47,7 +47,7 @@ background-size: 1800% 1800%;
     50%{background-position:100% 19%}
     100%{background-position:0% 82%}
 }
-@keyframes rainbow { 
+@keyframes rainbow {
     0%{background-position:0% 82%}
     50%{background-position:100% 19%}
     100%{background-position:0% 82%}
@@ -55,17 +55,13 @@ background-size: 1800% 1800%;
 
 /**********メイン設定**********/
 main {
-  height: 100%;             /* 横幅800px */
-  width: 100%;              /* 横幅800px */
-  background-image: url("../images/24404936.jpg");             /* 画像のURLを指定       */
+  height: 1080px;                                     /* 縦幅1080px*/
+  width: 100%;                                        /* 横幅すべて*/
+  background-image: url("../images/24404936.jpg");    /* 画像のURLを指定       */
   background-repeat: no-repeat;
-  margin: 0 auto;           /* 要素の中央揃え */
-  padding: 30px 0;       /* 上下に70px、左右に0pxの内側余白 */
+  margin: 0 auto;                                     /* 要素の中央揃え */
+  padding: 30px 0;                                    /* 上下に30px、左右に0pxの内側余白 */
   color: #deb887;
-}
-
-main.toumei {
-  background: rgba( 0, 0, 0, 0.25);                     /* 透明度を指定 */
 }
 
 .text-border{

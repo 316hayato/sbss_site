@@ -1,20 +1,17 @@
-<div class="container p-4">
-  <div class="row">
-    <div class="col text-left">
-      <h3>依頼リスト</h3>
-    </div>
-    <div class="col text-right">
-      <%= link_to "リストを空にする", destroy_all_request_lists_path, class:"btn btn-sm btn-danger", method: :delete,"data-confirm" => "本当にすべて削除しますか？" %>
-    </div>
+<div class="container">
+  <div class="row mt-4">
+    <h2 class="font-weight-bold">依頼リスト</h2>
   </div>
-  <div class="row">
+  <div class="row mt-4">
     <table class="table table-bordered" bgcolor="#c0ffc0">
       <thead>
         <tr>
           <th class="font-weight-bold h5">サービス名</th>
           <th class="font-weight-bold h5">利用冊数</th>
           <th class="font-weight-bold h5">単価(税込)</th>
-          <!--<th class="font-weight-bold h5"></th>-->
+          <th class="font-weight-bold h5 text-center">
+            <%= link_to "リストを空にする", destroy_all_request_lists_path, class:"btn btn-sm btn-danger", method: :delete,"data-confirm" => "本当にすべて削除しますか？" %>
+          </th>
         </tr>
       </thead>
       <% if current_customer %>
@@ -36,11 +33,19 @@
       <% end %>
     </table>
   </div>
-  <div class="row">
-    <div class="col text-left">
+  <div class="row mt-5">
+    <div class="col-auto text-left">
       <%= link_to "買い物を続ける", services_path, class:"btn btn-primary ml-3" %>
     </div>
-    <div class="col-3 mx-auto text-right">
+    <div class="col text-center">
+    <% if @request_lists.any? %>
+      <%= link_to "情報入力に進む", new_request_path, class:"btn btn-success" %>
+    <% else %>
+      <p>データがありません</p></br>
+      <p>1件以上の依頼で入力画面に進みます</p>
+    <% end %>
+    </div>
+    <div class="col-auto mx-auto text-right">
       <table class="table table-bordered" bgcolor="#FFFFFF">
         <tbody>
           <th>合計金額</th>
@@ -48,12 +53,5 @@
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="text-center">
-  <% if @request_lists.any? %>
-    <%= link_to "情報入力に進む", new_request_path, class:"btn btn-success" %>
-  <% else %>
-    <p>データがありません</p>
-  <% end %>
   </div>
 </div>

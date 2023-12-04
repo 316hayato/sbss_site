@@ -1,21 +1,30 @@
 <div class="container">
+  <div class="row mb-3">
+    <h2 class="font-weight-bold"><%= @service.service_name %></h2>
+  </div>
   <div class="row">
-    <div class="col-5 m-2">
-      <%= image_tag @service.get_image(400,400) %>
+    <div class="col-auto mt-5 mr-5">
+      <%= image_tag @service.get_image(360,280), class:"text-border" %>
     </div>
-    <div class="col-6 m-auto">
+    <div class="col-auto my-auto">
       <div class="row my-2">
-        <h3 class="font-weight-bold"><%= @service.service_name %></h3>
+        <h3 class="font-weight-bold">詳細</h3>
       </div>
-      <div class="row mt-4 mb-3">
+      <div class="row p-3 text-border bg-white">
         <p class="font-weight-normal"><%= @service.service_introduction %></p>
       </div>
-      <div class="row mt-3">
+      <div class="row my-3">
+        <h3 class="font-weight-bold">金額</h3>
+      </div>
+      <div class="row p-2">
         <p class="font-weight-bold">¥ <%= number_with_delimiter(@service.with_tax_price.floor, delimiter: ',') %>(税込)</p>
       </div>
       <!--ログインしている場合-->
       <% if current_customer %>
       <%= form_with model: @request_list, url: request_lists_path, method: :post do |f| %>
+      <div class="row my-2">
+        <h3 class="font-weight-bold">リストに追加</h3>
+      </div>
       <div class="row my-3">
         <%= f.hidden_field :service_id, :value => @service.id %>
         <h5 class="font-weight-normal">利用冊数 <%= f.select :amount, *[1..100] %> (最大100冊)</h5>

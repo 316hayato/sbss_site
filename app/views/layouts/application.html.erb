@@ -17,7 +17,7 @@
       <nav class="navbar navbar-expand-lg navbar-lg navbar-light">
         <div class="container-fluid">
           <a class="navbar-brand sbss-border" href="/">
-            <%= image_tag "SBSS - MarkMaker Logo.jpg", size: '100x40' %>
+            <%= image_tag "SBSS - MarkMaker Logo.jpg", size: '100x30' %>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -60,7 +60,7 @@
 
   <!--メイン開始-->
     <main>
-      <div class="message-area text-top mb-4">
+      <div class="message-area text-top mb-3">
         <% flash.each do |message_type, message| %>
           <div class="flash-message <%= message_type %>"><%= message %></div>
         <% end %>

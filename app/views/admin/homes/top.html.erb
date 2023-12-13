@@ -1,15 +1,14 @@
-<div class="container p-4">
-  <h3 class="font-weight-bold my-3 ml-5">依頼履歴一覧</h3>
-  <div class="row m-2 p-auto">
-    <div class="search_form my-2">
-      <%= form_with url: admin_root_path, local: true, method: :get do |f| %>
-        <%= f.text_field :word %>
-        <%= f.select :search, options_for_select([["申請日時","created_at"], ["依頼者","address_name"]]) %>
-        <%= f.submit "検索", class: "btn btn-primary" %>
-      <% end %>
-    </div>
+<div class="container">
+  <h2 class="font-weight-bold my-3">依頼履歴一覧</h2>
+  <% if @requests.any? %>
+  <div class="search_form mb-3">
+    <%= form_with url: admin_root_path, local: true, method: :get do |f| %>
+      <%= f.text_field :word %>
+      <%= f.select :search, options_for_select([["申請日時","created_at"], ["依頼者","address_name"]]) %>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
   </div>
-  <div class="row m-auto p-auto">
+  <div class="row mx-1">
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -35,4 +34,11 @@
       </tbody>
     </table>
   </div>
+  <% else %>
+  <div class="row mt-4">
+    <div>
+      <p>データがありません</p>
+    </div>
+  </div>
+  <% end %>
 </div>

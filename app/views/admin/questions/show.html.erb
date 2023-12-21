@@ -1,35 +1,33 @@
-<div class="container p-4">
+<div class="container">
   <h3 class="font-weight-bold ml-5">問い合わせ詳細</h3>
-  <div class="row m-3">
-    <div class="col mr-auto">
-      <div class="row">
-        <table class="table table-borderless">
-          <tbody>
-            <tr>
-              <th>問い合わせ名</th>
-              <td><%= @question.questions_name %></td>
-            </tr>
-            <tr>
-              <th>詳細説明</th>
-              <td><%= @question.questions_introduction %></td>
-            </tr>
-            <tr>
-              <th>問い合わせ回答</th>
-              <td><%= @question.questions_solution %></td>
-            </tr>
-            <tr>
-              <th>回答ステータス</th>
-              <td>
+  <div class="row m-3 d-flex justify-content-center">
+    <div class="col-auto pt-3 bg-white text-border">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>問い合わせ名</th>
+          <th><%= @question.questions_name %></th>
+        </tr>
+        <tr>
+          <th>詳細説明</th>
+          <th><%= @question.questions_introduction %></th>
+        </tr>
+        <tr>
+          <th>問い合わせ回答</th>
+          <th><%= @question.questions_solution %></th>
+        </tr>
+        <tr>
+          <th>回答ステータス</th>
+          <th>
                 <% if @question.is_answer %>
                   <p class="text-secondary font-weight-bold">回答済み</p>
                 <% else %>
                   <p class="text-success font-weight-bold">未回答</p>
                 <% end %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+              </th>
+        </tr>
+      </tbody>
+    </table>
     </div>
   </div>
   <div class="d-flex justify-content-center">

@@ -1,7 +1,8 @@
-<div class="container p-3">
+<div class="container">
   <h3 class="font-weight-bold my-3"><%= "#{@customer.last_name}#{@customer.first_name}" %>さんの会員情報編集</h3>
-  <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
-  <div class="row mx-1">
+  <div class="row d-flex justify-content-center">
+    <div class="col-auto pt-3 bg-white text-border">
+    <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
     <table class="table table-bordered">
       <tbody>
         <tr>
@@ -28,7 +29,7 @@
         </tr>
         <tr>
           <th><label for="inputAddress">住所</label></th>
-          <th colspan="2"><%= f.text_field :address, autofocus: true, id:"inputAddress", placeholder:"〇〇県〇〇市", size: 60 %></th>
+          <th colspan="2"><%= f.text_field :address, autofocus: true, id:"inputAddress", placeholder:"〇〇県〇〇市", size: 45 %></th>
         </tr>
         <tr>
           <th><label for="inputTelephoneNumber">電話番号</label></th>
@@ -36,7 +37,7 @@
         </tr>
         <tr>
           <th><label for="inputEmail">メールアドレス</label></th>
-          <th colspan="2"><%= f.text_field :email, autofocus: true, id:"inputEmail", placeholder:"sample@example.com", size: 40 %></th>
+          <th colspan="2"><%= f.text_field :email, autofocus: true, id:"inputEmail", placeholder:"sample@example.com", size: 45 %></th>
         </tr>
         <tr>
           <th>会員ステータス</th>
@@ -47,12 +48,10 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  <div class="row m-auto">
-    <div class="col-2"></div>
-    <div class="col">
-      <%= f.submit "変更を保存", class:"btn btn-success" %>
     </div>
+  </div>
+  <div class="row mt-3">
+    <%= f.submit "変更を保存", class:"btn btn-success mx-auto" %>
   </div>
   <% end %>
 </div>

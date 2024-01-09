@@ -1,5 +1,6 @@
 <div class="container">
-  <h2 class="font-weight-bold ml-4">申し込み履歴一覧</h2>
+  <h2 class="font-weight-bold my-3">申し込み履歴一覧</h2>
+  <% if @requests.any? %>
   <div class="row m-2">
     <table class="table table-bordered">
       <thead>
@@ -30,4 +31,11 @@
       </tbody>
     </table>
   </div>
+  <% else %>
+  <div class="row mt-4">
+    <div>
+      <p class="pl-3">データがありません</p>
+    </div>
+  </div>
+  <% end %>
 </div>

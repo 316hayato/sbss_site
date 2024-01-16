@@ -1,10 +1,8 @@
 <div class="container">
-  <div class="px-5">
-    <div class="row">
-      <h2 class="py-3">会員情報編集</h2>
-    </div>
+  <h2 class="font-weight-bold my-3">会員情報編集</h2>
+  <div class="row d-flex justify-content-center">
     <%= form_with model: @customer, url: customers_my_page_path do |f| %>
-    <div class="row mx-auto">
+    <div class="row mx-auto p-3 bg-white text-border">
       <table>
         <tbody>
           <tr>

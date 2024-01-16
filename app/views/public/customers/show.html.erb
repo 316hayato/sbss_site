@@ -1,12 +1,12 @@
 <div class="container">
-  <h1 class="font-weight-bold">マイページ</h1>
+  <h2 class="font-weight-bold">マイページ</h2>
   <div class="row mt-4">
-    <h3 class="font-weight-bold">登録情報</h3>
+    <h4 class="font-weight-bold">登録情報</h4>
     <% if @customer.email != 'guest@example.com' %>
       <p><%= link_to "編集する",customers_my_page_edit_path, class:"btn btn-sm btn-success ml-3" %></p>
     <% end %>
   </div>
-  <div class="row mypege">
+  <div class="row mypege p-3 bg-white text-border">
     <table class="table table-bordered" bgcolor="#FFFFFF">
       <tbody>
           <tr>
@@ -32,9 +32,9 @@
   </div>
   <% if @customer.email != 'guest@example.com' %>
   <div class="row flex-column">
-    <h3 class="font-weight-bold">申し込み履歴</h3>
+    <h4 class="font-weight-bold">申し込み履歴</h4>
     <p>詳細は<%= link_to "こちら",requests_path %></p>
-    <h3 class="font-weight-bold">問い合わせ履歴</h3>
+    <h4 class="font-weight-bold">問い合わせ履歴</h4>
     <p>詳細は<%= link_to "こちら",questions_path %></p>
   <% end %>
   </div>

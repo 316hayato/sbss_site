@@ -1,24 +1,24 @@
 <div class="container">
-  <div class="row mt-4">
-    <h2 class="font-weight-bold">お問い合わせフォーム</h2>
+  <h2 class="font-weight-bold">お問い合わせフォーム</h2>
+  <div class="row d-flex justify-content-center m-5">
+    <%= form_with model: @question, url: confirm_questions_path, method: :post do |f| %>
+    <div class="row mx-auto p-3 bg-white text-border">
+      <table>
+        <tbody>
+          <tr>
+            <td>問い合わせ名</td>
+            <td><%= f.text_field :questions_name, placeholder:"質問のタイトルはこちらに", size: 35 %></td>
+          </tr>
+          <tr>
+            <td>問い合わせ内容</td>
+            <td><%= f.text_area :questions_introduction, placeholder:"ここに説明文を記述願います", size: "38x5" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row d-flex justify-content-center mt-3">
+      <%= f.submit '確認画面へ', class:"btn btn-success m-2" %>
+    </div>
+    <% end %>
   </div>
-  <%= form_with model: @question, url: confirm_questions_path, method: :post do |f| %>
-  <div class="d-flex justify-content-center p-3 bg-white text-border">
-    <table>
-      <tbody>
-        <tr>
-          <td>問い合わせ名</td>
-          <td><%= f.text_field :questions_name, placeholder:"質問のタイトルはこちらに", size: 35 %></td>
-        </tr>
-        <tr>
-          <td>問い合わせ内容</td>
-          <td><%= f.text_area :questions_introduction, placeholder:"ここに説明文を記述願います", size: "38x5" %></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="d-flex justify-content-center">
-    <%= f.submit '確認画面へ', class:"btn btn-success m-2" %>
-  </div>
-  <% end %>
 </div>

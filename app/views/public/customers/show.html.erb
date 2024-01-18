@@ -31,9 +31,11 @@
     </table>
   </div>
   <% if @customer.email != 'guest@example.com' %>
-  <div class="row flex-column">
+  <div class="row flex-column mt-3">
     <h4 class="font-weight-bold">申し込み履歴</h4>
     <p>詳細は<%= link_to "こちら",requests_path %></p>
+  </div>
+  <div class="row flex-column mt-2">
     <h4 class="font-weight-bold">問い合わせ履歴</h4>
     <p>詳細は<%= link_to "こちら",questions_path %></p>
   <% end %>

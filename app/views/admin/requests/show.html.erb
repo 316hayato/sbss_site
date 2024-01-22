@@ -1,7 +1,7 @@
-<div class="container p-3">
-  <h3 class="font-weight-bold my-3 ml-5">依頼履歴詳細</h3>
-  <div class="row m-auto p-auto">
-    <table class="table table-borderless">
+<div class="container">
+  <h2 class="font-weight-bold">依頼履歴詳細</h2>
+  <div class="row mt-4 pt-3 px-3 bg-white text-border">
+    <table class="table table-bordered">
       <tbody>
         <tr>
           <th>依頼者</th>
@@ -58,45 +58,44 @@
       </tbody>
     </table>
   </div>
-  <div class="row m-auto p-auto">
-    <div class="col-7 m-auto p-auto">
+  <div class="row my-3">
+    <div class="col-7 m-auto bg-white text-border">
       <table class="table">
         <thead>
           <tr>
-            <th>サービス名</th>
-            <th>利用冊数</th>
-            <th>単価(税込)</th>
-            <th>ステータス</th>
-            <th></th>
+            <th class="text-center">サービス名</th>
+            <th class="text-center">利用冊数</th>
+            <th class="text-center">単価(税込)</th>
+            <th class="text-center" colspan="2">ステータス</th>
           </tr>
         </thead>
         <tbody>
           <% @request_details.each do |request_detail| %>
           <tr>
-            <td><%= request_detail.service.service_name %></td>
-            <td><%= request_detail.amount %></td>
-            <td><%= number_with_delimiter(request_detail.service.with_tax_price, delimiter: ',') %></td>
-            <td>
+            <td class="text-center"><%= request_detail.service.service_name %></td>
+            <td class="text-center"><%= request_detail.amount %></td>
+            <td class="text-center"><%= number_with_delimiter(request_detail.service.with_tax_price, delimiter: ',') %></td>
+            <td class="text-center">
               <%= form_with model: request_detail, url: admin_request_detail_path(request_detail.id) do |f| %>
                 <%= f.hidden_field :request_id, :value => request_detail.request_id %>
                 <%= f.hidden_field :service_id, :value => request_detail.service_id %>
-                <% if request_detail.service.id == 1 %>
-                  <%= f.select :storage_status, RequestDetail.storage_statuses.keys.map { |k| [I18n.t("enums.request_detail.storage_status.#{k}"), k] } %>
-                  <%= f.hidden_field :sale_status, :value => request_detail.sale_status %>
-                  <%= f.hidden_field :disposal_status, :value => request_detail.disposal_status %>
-                <% elsif request_detail.service_id == 2 %>
-                  <%= f.select :sale_status, RequestDetail.sale_statuses.keys.map { |k| [I18n.t("enums.request_detail.sale_status.#{k}"), k] } %>
-                  <%= f.hidden_field :storage_status, :value => request_detail.storage_status %>
-                  <%= f.hidden_field :disposal_status, :value => request_detail.disposal_status %>
-                <% elsif request_detail.service_id == 3 %>
-                  <%= f.select :disposal_status, RequestDetail.disposal_statuses.keys.map { |k| [I18n.t("enums.request_detail.disposal_status.#{k}"), k] } %>
-                  <%= f.hidden_field :storage_status, :value => request_detail.storage_status %>
-                  <%= f.hidden_field :sale_status, :value => request_detail.sale_status %>
-                <% elsif %>
-                  <p>ステータスなし</p>
-                <% end %>
-              </td>
-              <td>
+              <% if request_detail.service.id == 1 %>
+                <%= f.select :storage_status, RequestDetail.storage_statuses.keys.map { |k| [I18n.t("enums.request_detail.storage_status.#{k}"), k] } %>
+                <%= f.hidden_field :sale_status, :value => request_detail.sale_status %>
+                <%= f.hidden_field :disposal_status, :value => request_detail.disposal_status %>
+              <% elsif request_detail.service_id == 2 %>
+                <%= f.select :sale_status, RequestDetail.sale_statuses.keys.map { |k| [I18n.t("enums.request_detail.sale_status.#{k}"), k] } %>
+                <%= f.hidden_field :storage_status, :value => request_detail.storage_status %>
+                <%= f.hidden_field :disposal_status, :value => request_detail.disposal_status %>
+              <% elsif request_detail.service_id == 3 %>
+                <%= f.select :disposal_status, RequestDetail.disposal_statuses.keys.map { |k| [I18n.t("enums.request_detail.disposal_status.#{k}"), k] } %>
+                <%= f.hidden_field :storage_status, :value => request_detail.storage_status %>
+                <%= f.hidden_field :sale_status, :value => request_detail.sale_status %>
+              <% elsif %>
+                <p>ステータスなし</p>
+              <% end %>
+            </td>
+            <td class="text-center">
                 <%= f.submit "更新", class:"btn btn-sm btn-success", method: :patch %>
               <% end %>
             </td>
@@ -105,10 +104,10 @@
         </tbody>
       </table>
     </div>
-    <div class="col-2 m-auto p-auto"></div>
-    <div class="col-3 m-auto p-auto">
+    <div class="col-2"></div>
+    <div class="col-3 m-auto pt-3 px-4 bg-white text-border">
       <div class="row text-bottom">
-        <table class="table table-borderless">
+        <table class="table table-bordered">
           <tbody>
             <tr>
               <th>商品合計</th>
@@ -128,6 +127,6 @@
     </div>
   </div>
   <div>
-    <%= link_to "依頼履歴一覧へ戻る",admin_root_path, class:"btn btn-secondary mx-2" %>
-    </div>
+    <%= link_to "依頼履歴一覧へ戻る",admin_root_path, class:"btn btn-secondary" %>
+  </div>
 </div>

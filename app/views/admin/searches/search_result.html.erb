@@ -30,6 +30,10 @@
       <% end %>
     </tbody>
     <% else %><!-- @customers が nil の場合の処理 -->
+    </table>
+    <div class="row m-3">
+      <p>データが見つかりませんでした</p>
+    </div>
     <% end %>
   <% elsif @range == "Question" %><!--検索対象モデルがQuestionの時-->
     <% if @questions.any? %>
@@ -56,6 +60,10 @@
       <% end %>
     </tbody>
     <% else %><!-- @customers が nil の場合の処理 -->
+    </table>
+    <div class="row m-3">
+      <p>データが見つかりませんでした</p>
+    </div>
     <% end %>
   <% elsif @range == "Request" %><!--検索対象モデルがRequestの時-->
     <% if @requests.any? %>
@@ -82,6 +90,10 @@
       <% end %>
     </tbody>
     <% else %><!-- @customers が nil の場合の処理 -->
+    </table>
+    <div class="row m-3">
+      <p>データが見つかりませんでした</p>
+    </div>
     <% end %>
   <% elsif @range == "Service" %><!--検索対象モデルがServiceの時-->
     <% if @services.any? %>
@@ -110,6 +122,11 @@
       <% end %>
     </tbody>
     <% else %><!-- @customers が nil の場合の処理 -->
+    </table>
+    <div class="row m-3">
+      <p>データが見つかりませんでした</p>
+    </div>
     <% end %>
   <% end %>
   </table>
+</div>

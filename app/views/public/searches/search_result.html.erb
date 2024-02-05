@@ -1,10 +1,11 @@
 <div class="container">
   <h2 class="font-weight-bold"><%= @title %></h2>
   <div class="row m-3">
-  <h2>"<%= @word %>"の検索結果(全<%= @count %>件)</h2>
-  <table class="table table-hover table-inverse">
+  <h3>"<%= @word %>"の検索結果(全<%= @count %>件)</h3>
   <!--検索対象モデルがServiceの時 -->
   <% if @range == "Service" %>
+    <% if @services.any? %>
+    <table class="table table-hover table-inverse">
     <thead>
       <tr>
         <th>サービスID</th>
@@ -29,14 +30,13 @@
         </tr>
       <% end %>
     </tbody>
-  <% else %>
-    <!-- @services が nil の場合の処理 -->
-    <tbody>
-      <tr>
-        <td colspan="2">データが見つかりません</td>
-      </tr>
-    </tbody>
+    </table>
+    <% else %><!-- @services が nil の場合の処理 -->
+    <div class="row m-3">
+      <p>データが見つかりません</p>
+    </div>
+    <% end %>
   <% end %>
-  </table>
+  
   </div>
 </div>

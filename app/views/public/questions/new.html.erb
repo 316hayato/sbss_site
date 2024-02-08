@@ -3,7 +3,7 @@
   <div class="row d-flex justify-content-center m-5">
     <%= form_with model: @question, url: confirm_questions_path, method: :post do |f| %>
     <div class="row mx-auto p-3 bg-white text-border">
-      <table>
+      <table class="table table-bordered">
         <tbody>
           <tr>
             <td>問い合わせ名</td>
@@ -11,7 +11,7 @@
           </tr>
           <tr>
             <td>問い合わせ内容</td>
-            <td><%= f.text_area :questions_introduction, placeholder:"ここに説明文を記述願います", size: "38x5" %></td>
+            <td><%= f.text_area :questions_introduction, placeholder:"ここに説明文を記述願います", size: "37x4" %></td>
           </tr>
         </tbody>
       </table>

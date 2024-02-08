@@ -3,7 +3,7 @@
   <div class="row d-flex justify-content-center">
     <%= form_with model: @customer, url: customers_my_page_path do |f| %>
     <div class="row mx-auto p-3 bg-white text-border">
-      <table>
+      <table class="table table-bordered">
         <tbody>
           <tr>
             <th><label for="inputName">氏名</label></th>
@@ -17,7 +17,7 @@
           </tr>
           <tr>
             <th><label for="inputPostalCode">郵便番号</label></th>
-            <th><%= f.text_field :postal_code, autofocus: true, id:"PostalCode", placeholder:"0000000" %></th>
+            <th colspan="2"><%= f.text_field :postal_code, autofocus: true, id:"PostalCode", placeholder:"0000000" %></th>
           </tr>
           <tr>
             <th><label for="inputAddress">住所</label></th>
@@ -25,7 +25,7 @@
           </tr>
           <tr>
             <th><label for="inputTelephoneNumber">電話番号</label></th>
-            <th><%= f.text_field :telephone_number, autofocus: true, id:"inputTelephoneNumber", placeholder:"00000000000" %></th>
+            <th colspan="2"><%= f.text_field :telephone_number, autofocus: true, id:"inputTelephoneNumber", placeholder:"00000000000" %></th>
           </tr>
           <tr>
             <th width="150"><label for="inputEmail">メールアドレス</label></th>

@@ -14,6 +14,7 @@
       <%= link_to "新規登録",new_admin_service_path, class: "btn btn-success" %>
     </div>
   </div>
+  <% if @services.any? %>
   <div class="row mx-1">
     <table class="table table-bordered">
       <thead>
@@ -42,4 +43,11 @@
       </tbody>
     </table>
   </div>
+  <% else %>
+  <div class="row mt-4">
+    <div class="pl-3">
+      <p>該当のデータがありませんでした</p>
+    </div>
+  </div>
+  <% end %>
 </div>

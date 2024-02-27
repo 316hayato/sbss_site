@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-auto mt-5 mr-5">
-      <%= image_tag @service.get_image(360,280), class:"text-border" %>
+      <%= image_tag @service.get_image(300,240), class:"text-border" %>
     </div>
     <div class="col-auto my-auto">
       <div class="row my-2">
@@ -20,7 +20,7 @@
         <p class="font-weight-bold">¥ <%= number_with_delimiter(@service.with_tax_price.floor, delimiter: ',') %>(税込)</p>
       </div>
       <!--ログインしている場合-->
-      <% if current_customer %>
+    <% if current_customer %>
       <%= form_with model: @request_list, url: request_lists_path, method: :post do |f| %>
       <div class="row my-2">
         <h4 class="font-weight-bold">リストに追加</h4>
@@ -33,8 +33,13 @@
         <%= f.submit '依頼リストに入れる', class:"btn btn-success py-1" %>
       </div>
       <% end %>
-      <% end %>
-      <!---->
+    <% else %>
+     <div>
+       <h4 class="font-weight-bold">ログインすると注文が可能になります‼‼</h4>
+       <p class="font-weight-bold">会員登録がお済みでない方は<%= link_to "こちら", new_customer_registration_path %></p>
+     </div>
+    <% end %>
+      
     </div>
   </div>
 </div>

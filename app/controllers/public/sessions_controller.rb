@@ -7,7 +7,7 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     customer = Customer.guest
     sign_in customer
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to customers_my_page_path(current_customer), notice: 'ゲストユーザーとしてログインしました。'
   end
   # GET /resource/sign_in
   # def new

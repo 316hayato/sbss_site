@@ -26,7 +26,7 @@ Customer.find_or_create_by!(email: 'guest@example.com') do |user|
 end
 
 # テストログイン
-Customer.find_or_create_by!(email: 'guest@example.com') do |user|
+Customer.find_or_create_by!(email: 'test@example.com') do |user|
   user.password = "12345"
   user.last_name = "テスト"
   user.first_name = "ユーザー"

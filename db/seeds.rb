@@ -27,7 +27,7 @@ end
 
 # テストログイン
 Customer.find_or_create_by!(email: 'test@example.com') do |user|
-  user.password = "12345"
+  user.password = "123456"
   user.last_name = "テスト"
   user.first_name = "ユーザー"
   user.last_name_kana = " "

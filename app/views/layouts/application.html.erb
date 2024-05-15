@@ -17,7 +17,7 @@
       <nav class="navbar navbar-expand-lg navbar-lg navbar-light">
         <div class="container-fluid">
           <a class="navbar-brand sbss-border" href="/">
-            <%= image_tag "SBSS - MarkMaker Logo.jpg", size: '100x30' %>
+            <%= image_tag "SBSS - MarkMaker Logo.jpg", size: '100x40' %>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,7 @@
                 <%= link_to "ログアウト",destroy_admin_session_path, class:"btn btn-danger mx-2", method: :delete %>
               <% else %>
                 <!--ログインしていない場合-->
-                <%= link_to "当サイトについて",about_path, class:"btn btn-secondary mx-2" %>
+                <%= link_to "当サイトについて",about_path, class:"btn btn-info mx-2" %>
                 <%= link_to "サービス一覧",services_path, class:"btn btn-secondary mx-2" %>
                 <%= link_to "新規登録",new_customer_registration_path, class:"btn btn-primary mx-2" %>
                 <%= link_to "ログイン",new_customer_session_path, class:"btn btn-success mx-2" %>

@@ -1,5 +1,7 @@
 <div class="container">
-  <h2 class="font-weight-bold">お問い合わせフォーム</h2>
+  <div class="row mt-4">
+    <h2 class="font-weight-bold">お問い合わせフォーム</h2>
+  </div>
   <div class="row d-flex justify-content-center m-5">
     <%= form_with model: @question, url: confirm_questions_path, method: :post do |f| %>
     <div class="row mx-auto p-3 bg-white text-border">

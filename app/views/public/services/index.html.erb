@@ -7,12 +7,12 @@
       <div class=" row item-box m-3">
         <div class="col text-right">
         <%=link_to service_path(service.id) do %>
-          <%= image_tag service.image, size: "300x240", class:"text-border" %>
+          <%= image_tag service.image, size: "200x180", class:"text-border" %>
         <% end %>
         </div>
         <div class="col text-left">
-        <h5><p><%= link_to service.service_name, service_path(service.id) %></p></h5>
-        <p class="font-weight-bold">¥ <%= number_with_delimiter(service.price, delimiter: ',') %></p>
+          <h5><%= link_to service.service_name, service_path(service.id) %></h5>
+          <p class="font-weight-bold">¥ <%= number_with_delimiter(service.price, delimiter: ',') %></p>
         </div>
       </div>
     <% end %>

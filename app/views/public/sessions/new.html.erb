@@ -1,7 +1,7 @@
 <%= render "public/shared/error_messages", resource: resource %>
 <div class="container-signin">
   <div class="form-signin w-100 m-auto">
-  <h3 class="font-weight-bold mb-3 mt-1 fw-normal text-center">ログイン<%= image_tag "book_icon.jpg", class: "ml-4", size: '82x57' %></h3>
+  <h3 class="font-weight-bold mb-3 fw-normal text-center">ログイン<%= image_tag "book_icon.jpg", class: "ml-4", size: '82x57' %></h3>
   <%= form_with model: @customer, url: customer_session_path do |f| %>
   <div class="form-floating">
     <%= f.label :email, "メールアドレス" %>
@@ -20,7 +20,7 @@
   <%= f.submit "ログイン", class: "btn btn-success w-100 py-2" %>
   <%= render "public/shared/links" %>
   <% end %>
-  <div class="mt-4 text-body-secondary">
+  <div class="mt-3 text-body-secondary">
     <h3 class="font-weight-bold text-center mb-3 fw-normal">ゲストログイン（閲覧用）</h3>
     <%= link_to 'ログイン', customers_guest_sign_in_path, method: :post, class: "btn btn-primary w-100 py-2" %>
   </div>

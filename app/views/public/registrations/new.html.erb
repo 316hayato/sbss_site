@@ -2,9 +2,9 @@
   <div class="container">
     <div class="card-container">
       <div class="card-body">
-        <h1 class="card-title font-weight-bold mb-4">新規会員登録</h1>
+        <h2 class="card-title font-weight-bold mb-4 text-center">新規会員登録</h2>
         <%= form_with model: @customer, url: customer_registration_path do |f| %>
-        <div class="text-border p-3 mb-5 bg-white">
+        <div class="text-border p-3 mb-4 bg-white">
           <table class="w-100 mx-auto">
             <tbody>
               <tr>
@@ -34,7 +34,7 @@
               <tr>
                 <th><%= f.label :address, "住所" %></th>
                 <th></th>
-                <th colspan="3"><%= f.text_field :address, size: "50" %></th>
+                <th colspan="3"><%= f.text_field :address, size: "55" %></th>
               </tr>
               <tr>
                 <th><%= f.label :telephone_number, "電話番号(ハイフンなし)" %></th>
@@ -58,11 +58,12 @@
             </tbody>
           </table>
         </div>
-        <div class="d-grid gap-2 col-4 mx-auto">
+        <div class="d-grid gap-2 col-3 mx-auto">
           <%= f.submit "新規登録", class: "btn btn-success btn-block py-2" %>
-          <%= render "public/shared/links" %>
+          
         </div>
         <% end %>
+        <%= render "public/shared/links" %>
       </div>
     </div>
   </div>

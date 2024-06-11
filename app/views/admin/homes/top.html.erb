@@ -1,13 +1,18 @@
 <div class="container">
-  <h2 class="font-weight-bold my-3">依頼履歴一覧</h2>
-  <% if @requests.any? %>
-  <div class="search_form mb-3">
+  <div class="row my-3">
+    <div class="col text-left">
+      <h2 class="font-weight-bold">依頼履歴一覧</h2>
+    </div>
+    <div class="search_form mb-3">
     <%= form_with url: admin_root_path, local: true, method: :get do |f| %>
       <%= f.text_field :word %>
       <%= f.select :search, options_for_select([["申請日時","created_at"], ["依頼者","address_name"]]) %>
       <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
+    </div>
+    <div class="col text-right"></div>
   </div>
+  <% if @requests.any? %>
   <div class="row mx-1">
     <table class="table table-bordered">
       <thead>

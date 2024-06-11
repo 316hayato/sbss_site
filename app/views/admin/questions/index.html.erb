@@ -1,13 +1,18 @@
 <div class="container">
-  <h2 class="font-weight-bold my-3">問い合わせリスト</h2>
-  <% if @questions.any? %>
-  <div class="search_form mb-3">
+  <div class="row my-3">
+    <div class="col text-left">
+      <h2 class="font-weight-bold">問い合わせリスト</h2>
+    </div>
+    <div class="search_form">
     <%= form_with url: admin_questions_path, local: true, method: :get do |f| %>
       <%= f.text_field :word %>
       <%= f.select :search, options_for_select([["問い合わせID","id"], ["問い合わせ名","name"]]) %>
       <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
+    </div>
+    <div class="col text-right"></div>
   </div>
+  <% if @questions.any? %>
   <div class="row mx-1">
     <table class="table table-bordered">
       <thead>
